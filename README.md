@@ -6,6 +6,16 @@ Shortlist of MCPs, templates, and agentic skill repositories for practical data-
 
 This file is a living shortlist. More links can be appended as they come in.
 
+## Repo structure
+
+- `TEAM_WORKFLOW_MAP.html` , visual workflow map
+- `catalog/workflow-catalog.yaml` , stage-to-skill mapping
+- `skills/` , starter skill definitions aligned to the workflow
+- `mcp/` , MCP references used in the workflow
+- `tools/` , tool and automation references
+- `automation/` , automation pattern index
+- `SKILLS_INDEX.md` , quick directory of current starter skills
+
 ## Current shortlist
 
 | Name | Type | Link | Why it matters | Priority | Action |

@@ -1,0 +1,81 @@
+version: 1
+repo: data-skill
+purpose: AI skills, MCP references, and tool patterns for the analytics team
+stages:
+  - id: assessment
+    name: Project assessment
+    outputs:
+      - scoped brief
+      - html prototype
+      - source map
+    skills:
+      - skills/assessment/project-brief/SKILL.md
+      - skills/assessment/html-prototype/SKILL.md
+      - skills/assessment/source-discovery/SKILL.md
+    mcps:
+      - mcp/google-mcp-toolbox.md
+    tools:
+      - tools/html-prototyping.md
+  - id: ingestion
+    name: Pipeline and ingestion
+    skills:
+      - skills/data-engineering/airflow-pipeline/SKILL.md
+      - skills/data-engineering/source-onboarding/SKILL.md
+    mcps:
+      - mcp/google-mcp-toolbox.md
+    tools:
+      - tools/airflow.md
+  - id: modeling
+    name: Modeling and transformation
+    skills:
+      - skills/analytics-engineering/dbt-modeling/SKILL.md
+      - skills/analytics-engineering/model-review/SKILL.md
+    tools:
+      - tools/dbt.md
+  - id: quality
+    name: Data quality and testing
+    skills:
+      - skills/quality/data-quality-tests/SKILL.md
+      - skills/quality/reconciliation-checks/SKILL.md
+    tools:
+      - tools/data-quality-gates.md
+  - id: product-build
+    name: Analytics product build
+    skills:
+      - skills/bi/powerbi-dax/SKILL.md
+      - skills/bi/html-report/SKILL.md
+      - skills/bi/pdf-export/SKILL.md
+    mcps:
+      - mcp/microsoft-powerbi-modeling-mcp.md
+    tools:
+      - tools/html-to-pdf.md
+  - id: analysis
+    name: Exploration and insight generation
+    skills:
+      - skills/analysis/data-to-llm-insights/SKILL.md
+      - skills/analysis/insight-fact-check/SKILL.md
+    mcps:
+      - mcp/google-mcp-toolbox.md
+    tools:
+      - tools/data-to-llm-script.md
+  - id: data-science
+    name: Predictive modeling and experimentation
+    skills:
+      - skills/data-science/experiment-design/SKILL.md
+      - skills/data-science/model-review/SKILL.md
+    mcps:
+      - mcp/google-mcp-toolbox.md
+  - id: delivery
+    name: Deployment and stakeholder delivery
+    skills:
+      - skills/delivery/release-package/SKILL.md
+      - skills/delivery/handoff-docs/SKILL.md
+    tools:
+      - tools/release-checklist.md
+  - id: operations
+    name: Monitoring and iteration
+    skills:
+      - skills/operations/incident-summary/SKILL.md
+      - skills/operations/improvement-backlog/SKILL.md
+    tools:
+      - tools/monitoring-and-alerts.md
