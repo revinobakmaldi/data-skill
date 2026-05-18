@@ -1,73 +1,139 @@
 # data-skill
 
-Repo contains AI skills of data team, including data engineering, modeling, analyst, and scientist.
+Repo for real AI resources the data team can use across:
+- data engineering
+- analytics engineering / modeling
+- BI / Power BI
+- analysis
+- data science
+- reporting and delivery
 
-Shortlist of MCPs, templates, and agentic skill repositories for practical data-team AI workflows.
+This repo is not a fake local skill pack.
+It is a curated directory of **real external skills, MCPs, tools, frameworks, and workflow references** mapped to the team workflow.
 
-This file is a living shortlist. More links can be appended as they come in.
+## Start here
 
-## Repo structure
+- `TEAM_WORKFLOW_MAP.html` , visual workflow and AI leverage map
+- `REAL_RESOURCES.md` , main stage-by-stage resource list
+- `catalog/real-workflow-resources.yaml` , machine-readable workflow mapping
+- `SKILLS_INDEX.md` , fast index of the most relevant external resources
 
-- `TEAM_WORKFLOW_MAP.html` , visual workflow map
-- `REAL_RESOURCES.md` , real internet resources mapped to the workflow
-- `catalog/real-workflow-resources.yaml` , machine-readable stage-to-resource mapping
-- `mcp/` , MCP references used in the workflow
-- `tools/` , tool and automation references
-- `automation/` , automation pattern index
-- `SKILLS_INDEX.md` , quick directory of real external resources
+## What this repo currently contains
 
-## Important
+### 1. Workflow map
+A visual map of the analytics product workflow, including where AI can help through:
+- MCPs
+- tools
+- automation
+- human review
 
-The previous internal starter skill files were placeholders. Use `REAL_RESOURCES.md` and `catalog/real-workflow-resources.yaml` as the source of truth for real external skills, MCPs, and tools.
+### 2. Real external resources
+Curated internet resources aligned to the workflow, including:
+- MCP servers
+- orchestration tools
+- transformation tools
+- data quality frameworks
+- reporting tools
+- LLM evaluation / observability tools
+- ML experimentation tools
 
-## Current shortlist
+### 3. Lightweight reference docs
+Small internal docs for:
+- MCP references
+- tool references
+- automation references
 
-| Name | Type | Link | Why it matters | Priority | Action |
-|---|---|---|---|---|---|
-| Google MCP Toolbox for Databases | General data / database MCP | https://github.com/googleapis/mcp-toolbox | Strong cross-stack MCP for database access, schema discovery, SQL workflows, and warehouse connectivity across many data platforms | High | Track closely |
-| Microsoft Power BI Modeling MCP | Core Power BI MCP | https://github.com/microsoft/powerbi-modeling-mcp | Best official MCP for Power BI semantic modeling, DAX validation, and PBIP/TMDL workflows | High | Keep |
-| data-goblin Power BI Agentic Development | Skill marketplace / plugin library | https://github.com/data-goblin/power-bi-agentic-development | Broad reusable library of Power BI agent resources, plugins, skills, hooks, and workflows | High | Reference and selectively reuse |
-| RuiRomano Power BI Agentic MCP Cloud Agent | Workflow template | https://github.com/RuiRomano/powerbi-agentic-mcp-cloud-agent | Clean example of how to wire PBIP, Copilot agent, MCP, issues, and PR-based workflows together | Medium | Reference and adapt |
+## Current high-priority resources
 
-## Recommended classification
+### Core MCPs
+- `googleapis/mcp-toolbox`  
+  https://github.com/googleapis/mcp-toolbox
+- `microsoft/powerbi-modeling-mcp`  
+  https://github.com/microsoft/powerbi-modeling-mcp
+- `dbt-labs/dbt-mcp`  
+  https://github.com/dbt-labs/dbt-mcp
 
-### 1. Core MCPs
-These are the actual engines/tools that give AI capabilities.
+### Pipeline and ingestion
+- `apache/airflow`  
+  https://github.com/apache/airflow
+- `astronomer/astro-sdk`  
+  https://github.com/astronomer/astro-sdk
+- `airbytehq/airbyte`  
+  https://github.com/airbytehq/airbyte
+- `dlt-hub/dlt`  
+  https://github.com/dlt-hub/dlt
 
-- Google MCP Toolbox for Databases
-- Microsoft Power BI Modeling MCP
+### Modeling and transformation
+- `dbt-labs/dbt-core`  
+  https://github.com/dbt-labs/dbt-core
+- `dbt-labs/dbt-utils`  
+  https://github.com/dbt-labs/dbt-utils
+- `dbt-labs/dbt-project-evaluator`  
+  https://github.com/dbt-labs/dbt-project-evaluator
 
-### 2. Workflow templates
-These show how to organize AI work around MCPs.
+### Data quality and observability
+- `great-expectations/great_expectations`  
+  https://github.com/great-expectations/great_expectations
+- `calogica/dbt-expectations`  
+  https://github.com/calogica/dbt-expectations
+- `elementary-data/elementary`  
+  https://github.com/elementary-data/elementary
 
-- RuiRomano Power BI Agentic MCP Cloud Agent
+### Analytics product build
+- `data-goblin/power-bi-agentic-development`  
+  https://github.com/data-goblin/power-bi-agentic-development
+- `RuiRomano/powerbi-agentic-mcp-cloud-agent`  
+  https://github.com/RuiRomano/powerbi-agentic-mcp-cloud-agent
+- `quarto-dev/quarto-cli`  
+  https://github.com/quarto-dev/quarto-cli
+- `evidence-dev/evidence`  
+  https://github.com/evidence-dev/evidence
+- `microsoft/playwright`  
+  https://github.com/microsoft/playwright
 
-### 3. Skill libraries / marketplaces
-These provide reusable skills, plugins, hooks, and patterns.
+### Insight generation / LLM ops
+- `promptfoo/promptfoo`  
+  https://github.com/promptfoo/promptfoo
+- `langfuse/langfuse`  
+  https://github.com/langfuse/langfuse
+- `evidentlyai/evidently`  
+  https://github.com/evidentlyai/evidently
 
-- data-goblin Power BI Agentic Development
+### Data science
+- `mlflow/mlflow`  
+  https://github.com/mlflow/mlflow
+- `scikit-learn/scikit-learn`  
+  https://github.com/scikit-learn/scikit-learn
+- `alteryx/featuretools`  
+  https://github.com/alteryx/featuretools
 
-## Current recommendation
+## Recommended use of this repo
 
-If the team wants a tight, high-signal starting point:
+Use this repo to answer 3 questions:
 
-1. Use **Google MCP Toolbox for Databases** for broader data and database workflows.
-2. Use **Microsoft Power BI Modeling MCP** for Power BI-specific modeling work.
-3. Mine **data-goblin/power-bi-agentic-development** for reusable Power BI skills.
-4. Use **RuiRomano/powerbi-agentic-mcp-cloud-agent** only as a workflow example when needed.
+1. **What is the workflow stage?**  
+   Check `TEAM_WORKFLOW_MAP.html`
 
-## Next skill categories to add
+2. **What real tools/MCPs fit that stage?**  
+   Check `REAL_RESOURCES.md`
 
-- SQL generation and safe query workflows
-- Schema exploration and metadata discovery
-- BigQuery / warehouse AI workflows
-- DAX generation
-- DAX debugging
-- Semantic model documentation
-- Naming convention audit and cleanup
-- Performance tuning
+3. **Which resources should we evaluate, clone, or adopt?**  
+   Use `SKILLS_INDEX.md` and the YAML catalog as the shortlist.
 
-## Notes
+## Current gaps
 
-- This shortlist is intentionally trimmed.
-- Keep only tools that are either broadly useful for the data team or clearly best-in-class for Power BI.
+This repo still needs a better decision layer for:
+- clone now vs reference only
+- team priority ranking
+- owner by function
+- implementation status
+
+## Next improvement
+
+The next useful upgrade is to add a matrix like:
+- resource
+- workflow stage
+- team function
+- use case
+- maturity
+- adopt now / later / reference only
