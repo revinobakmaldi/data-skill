@@ -9,12 +9,16 @@ This file is a living shortlist. More links can be appended as they come in.
 ## Repo structure
 
 - `TEAM_WORKFLOW_MAP.html` , visual workflow map
-- `catalog/workflow-catalog.yaml` , stage-to-skill mapping
-- `skills/` , starter skill definitions aligned to the workflow
+- `REAL_RESOURCES.md` , real internet resources mapped to the workflow
+- `catalog/real-workflow-resources.yaml` , machine-readable stage-to-resource mapping
 - `mcp/` , MCP references used in the workflow
 - `tools/` , tool and automation references
 - `automation/` , automation pattern index
-- `SKILLS_INDEX.md` , quick directory of current starter skills
+- `SKILLS_INDEX.md` , quick directory of real external resources
+
+## Important
+
+The previous internal starter skill files were placeholders. Use `REAL_RESOURCES.md` and `catalog/real-workflow-resources.yaml` as the source of truth for real external skills, MCPs, and tools.
 
 ## Current shortlist
 

@@ -1,55 +1,69 @@
-# Skills Index
+# Real Skills / MCP / Tools Index
 
-This repo is organized around the analytics product workflow shown in `TEAM_WORKFLOW_MAP.html`.
+This file replaces the weak placeholder interpretation.
 
-## Stages
+Use `REAL_RESOURCES.md` as the main stage-by-stage reference.
 
-1. Project assessment
-2. Pipeline and ingestion
-3. Modeling and transformation
-4. Data quality and testing
-5. Analytics product build
-6. Exploration and insight generation
-7. Predictive modeling and experimentation
-8. Deployment and stakeholder delivery
-9. Monitoring and iteration
+## Highest-signal real resources
 
-## Current starter skills
+### MCP
+- `googleapis/mcp-toolbox`  
+  https://github.com/googleapis/mcp-toolbox
+- `microsoft/powerbi-modeling-mcp`  
+  https://github.com/microsoft/powerbi-modeling-mcp
+- `dbt-labs/dbt-mcp`  
+  https://github.com/dbt-labs/dbt-mcp
 
-### Assessment
-- `skills/assessment/project-brief/`
-- `skills/assessment/html-prototype/`
-- `skills/assessment/source-discovery/`
+### Pipeline / ingestion
+- `apache/airflow`  
+  https://github.com/apache/airflow
+- `astronomer/astro-sdk`  
+  https://github.com/astronomer/astro-sdk
+- `airbytehq/airbyte`  
+  https://github.com/airbytehq/airbyte
+- `dlt-hub/dlt`  
+  https://github.com/dlt-hub/dlt
 
-### Data engineering
-- `skills/data-engineering/airflow-pipeline/`
-- `skills/data-engineering/source-onboarding/`
+### Modeling / transformation
+- `dbt-labs/dbt-core`  
+  https://github.com/dbt-labs/dbt-core
+- `dbt-labs/dbt-utils`  
+  https://github.com/dbt-labs/dbt-utils
+- `dbt-labs/dbt-project-evaluator`  
+  https://github.com/dbt-labs/dbt-project-evaluator
 
-### Analytics engineering
-- `skills/analytics-engineering/dbt-modeling/`
-- `skills/analytics-engineering/model-review/`
+### Data quality
+- `great-expectations/great_expectations`  
+  https://github.com/great-expectations/great_expectations
+- `calogica/dbt-expectations`  
+  https://github.com/calogica/dbt-expectations
+- `elementary-data/elementary`  
+  https://github.com/elementary-data/elementary
 
-### Quality
-- `skills/quality/data-quality-tests/`
-- `skills/quality/reconciliation-checks/`
+### Analytics product build
+- `data-goblin/power-bi-agentic-development`  
+  https://github.com/data-goblin/power-bi-agentic-development
+- `RuiRomano/powerbi-agentic-mcp-cloud-agent`  
+  https://github.com/RuiRomano/powerbi-agentic-mcp-cloud-agent
+- `quarto-dev/quarto-cli`  
+  https://github.com/quarto-dev/quarto-cli
+- `evidence-dev/evidence`  
+  https://github.com/evidence-dev/evidence
+- `microsoft/playwright`  
+  https://github.com/microsoft/playwright
 
-### BI / analytics product
-- `skills/bi/powerbi-dax/`
-- `skills/bi/html-report/`
-- `skills/bi/pdf-export/`
-
-### Analysis
-- `skills/analysis/data-to-llm-insights/`
-- `skills/analysis/insight-fact-check/`
+### Insight generation / LLM ops
+- `promptfoo/promptfoo`  
+  https://github.com/promptfoo/promptfoo
+- `langfuse/langfuse`  
+  https://github.com/langfuse/langfuse
+- `evidentlyai/evidently`  
+  https://github.com/evidentlyai/evidently
 
 ### Data science
-- `skills/data-science/experiment-design/`
-- `skills/data-science/model-review/`
-
-### Delivery
-- `skills/delivery/release-package/`
-- `skills/delivery/handoff-docs/`
-
-### Operations
-- `skills/operations/incident-summary/`
-- `skills/operations/improvement-backlog/`
+- `mlflow/mlflow`  
+  https://github.com/mlflow/mlflow
+- `scikit-learn/scikit-learn`  
+  https://github.com/scikit-learn/scikit-learn
+- `alteryx/featuretools`  
+  https://github.com/alteryx/featuretools

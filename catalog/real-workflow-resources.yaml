@@ -1,0 +1,92 @@
+version: 1
+source_of_truth: REAL_RESOURCES.md
+stages:
+  assessment:
+    tools:
+      - name: Quarto CLI
+        repo: https://github.com/quarto-dev/quarto-cli
+      - name: Evidence
+        repo: https://github.com/evidence-dev/evidence
+    mcps:
+      - name: Google MCP Toolbox
+        repo: https://github.com/googleapis/mcp-toolbox
+  ingestion:
+    tools:
+      - name: Apache Airflow
+        repo: https://github.com/apache/airflow
+      - name: Astro SDK
+        repo: https://github.com/astronomer/astro-sdk
+      - name: Airbyte
+        repo: https://github.com/airbytehq/airbyte
+      - name: dlt
+        repo: https://github.com/dlt-hub/dlt
+  modeling:
+    tools:
+      - name: dbt Core
+        repo: https://github.com/dbt-labs/dbt-core
+      - name: dbt-utils
+        repo: https://github.com/dbt-labs/dbt-utils
+      - name: dbt Project Evaluator
+        repo: https://github.com/dbt-labs/dbt-project-evaluator
+    mcps:
+      - name: dbt MCP
+        repo: https://github.com/dbt-labs/dbt-mcp
+  quality:
+    tools:
+      - name: Great Expectations
+        repo: https://github.com/great-expectations/great_expectations
+      - name: dbt-expectations
+        repo: https://github.com/calogica/dbt-expectations
+      - name: Elementary
+        repo: https://github.com/elementary-data/elementary
+  analytics_product_build:
+    mcps:
+      - name: Microsoft Power BI Modeling MCP
+        repo: https://github.com/microsoft/powerbi-modeling-mcp
+    references:
+      - name: data-goblin Power BI Agentic Development
+        repo: https://github.com/data-goblin/power-bi-agentic-development
+      - name: RuiRomano Power BI Agentic MCP Cloud Agent
+        repo: https://github.com/RuiRomano/powerbi-agentic-mcp-cloud-agent
+    tools:
+      - name: Quarto CLI
+        repo: https://github.com/quarto-dev/quarto-cli
+      - name: Evidence
+        repo: https://github.com/evidence-dev/evidence
+      - name: Playwright
+        repo: https://github.com/microsoft/playwright
+  insight_generation:
+    tools:
+      - name: promptfoo
+        repo: https://github.com/promptfoo/promptfoo
+      - name: Langfuse
+        repo: https://github.com/langfuse/langfuse
+      - name: Evidently
+        repo: https://github.com/evidentlyai/evidently
+    mcps:
+      - name: Google MCP Toolbox
+        repo: https://github.com/googleapis/mcp-toolbox
+  data_science:
+    tools:
+      - name: MLflow
+        repo: https://github.com/mlflow/mlflow
+      - name: scikit-learn
+        repo: https://github.com/scikit-learn/scikit-learn
+      - name: Featuretools
+        repo: https://github.com/alteryx/featuretools
+  delivery:
+    tools:
+      - name: Quarto CLI
+        repo: https://github.com/quarto-dev/quarto-cli
+      - name: Playwright
+        repo: https://github.com/microsoft/playwright
+      - name: Apache Airflow
+        repo: https://github.com/apache/airflow
+  monitoring:
+    tools:
+      - name: Elementary
+        repo: https://github.com/elementary-data/elementary
+      - name: Langfuse
+        repo: https://github.com/langfuse/langfuse
+      - name: Evidently
+        repo: https://github.com/evidentlyai/evidently
