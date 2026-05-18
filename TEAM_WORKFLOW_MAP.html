@@ -478,13 +478,13 @@
         <div>
           <span class="lane">Data engineering</span>
           <h3>Pipeline and ingestion</h3>
-          <p>Move source data into a reliable storage layer with logging, retries, and freshness control.</p>
+          <p>Move source data into a reliable storage layer with Airflow-managed orchestration, logging, retries, and freshness control.</p>
         </div>
         <div class="stack">
           <h4>Team tasks</h4>
           <ul>
             <li>Connect source systems</li>
-            <li>Build extraction and load jobs</li>
+            <li>Build extraction and load jobs in Airflow</li>
             <li>Handle incremental logic</li>
             <li>Monitor failures and reruns</li>
           </ul>
@@ -492,12 +492,12 @@
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>ETL scaffolding skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Airflow pipeline skill</span>
             <span class="badge" data-kind="mcp"><span class="swatch"></span>DB / API access MCP</span>
-            <span class="badge" data-kind="automation"><span class="swatch"></span>Scheduling + alerts</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>Airflow scheduling + alerts</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Prod-readiness check</span>
           </div>
-          <div class="highlight">Best use: script generation, validation SQL, retry logic, observability boilerplate, incident triage.</div>
+          <div class="highlight">Best use: Airflow DAG scaffolding, validation SQL, retry logic, observability boilerplate, and incident triage.</div>
         </div>
       </article>
 
@@ -506,24 +506,25 @@
         <div>
           <span class="lane">Analytics engineering</span>
           <h3>Modeling and transformation</h3>
-          <p>Turn raw data into trusted business models, reusable marts, and semantic definitions.</p>
+          <p>Turn raw data into trusted business models, reusable marts, and semantic definitions using dbt-based transformation workflows.</p>
         </div>
         <div class="stack">
           <h4>Team tasks</h4>
           <ul>
             <li>Clean and standardize fields</li>
             <li>Define business logic</li>
-            <li>Create fact and dimension models</li>
+            <li>Create fact and dimension models in dbt</li>
             <li>Document grain and dependencies</li>
           </ul>
         </div>
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>SQL / dbt modeling skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt modeling skill</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>dbt runs + tests</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Logic validation</span>
           </div>
-          <div class="highlight">Best use: draft models, naming cleanup, lineage explanation, star-schema review, business-rule translation.</div>
+          <div class="highlight">Best use: draft dbt models, naming cleanup, lineage explanation, star-schema review, and business-rule translation.</div>
         </div>
       </article>
 
