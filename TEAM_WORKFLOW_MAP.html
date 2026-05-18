@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics Team Workflow Map</title>
+  <style>
+    :root {
+      --bg: oklch(0.97 0.01 90);
+      --panel: oklch(0.995 0.003 90);
+      --ink: oklch(0.23 0.02 255);
+      --muted: oklch(0.52 0.02 250);
+      --line: oklch(0.88 0.02 95);
+      --shadow: 0 20px 60px rgba(38, 32, 20, 0.08);
+      --skills: oklch(0.72 0.17 145);
+      --mcp: oklch(0.72 0.18 250);
+      --auto: oklch(0.78 0.18 70);
+      --review: oklch(0.72 0.18 20);
+      --accent: oklch(0.72 0.13 35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+      background:
+        radial-gradient(circle at top left, rgba(228, 196, 141, 0.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(154, 188, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, oklch(0.98 0.01 90), oklch(0.95 0.015 90));
+      color: var(--ink);
+    }
+
+    .shell {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px 22px 72px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-card,
+    .legend,
+    .stage {
+      background: color-mix(in oklab, var(--panel) 88%, white);
+      border: 1px solid rgba(99, 82, 48, 0.08);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 34px 34px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -48px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(120, 166, 255, 0.2), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 4vw, 4.8rem);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .sub {
+      max-width: 62ch;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: color-mix(in oklab, var(--ink) 72%, white);
+      margin-bottom: 24px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(247,242,234,0.95));
+      border: 1px solid rgba(99,82,48,0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.8rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .legend {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .legend h2,
+    .map-header h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .legend-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(99,82,48,0.07);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      margin-top: 5px;
+    }
+
+    .legend-item strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.98rem;
+    }
+
+    .legend-item p,
+    .legend-note,
+    .stage p,
+    li,
+    .lane {
+      margin: 0;
+      color: color-mix(in oklab, var(--ink) 73%, white);
+      line-height: 1.5;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button.filter {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 11px 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.92rem;
+      color: var(--ink);
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(99,82,48,0.08);
+      transition: transform 150ms ease, background 150ms ease, opacity 150ms ease;
+    }
+
+    button.filter:hover,
+    button.filter.active {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,1);
+    }
+
+    .map-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin: 8px 0 18px;
+      padding: 0 4px;
+    }
+
+    .map-header p {
+      max-width: 58ch;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .workflow {
+      display: grid;
+      gap: 18px;
+      position: relative;
+    }
+
+    .stage {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+      padding: 22px;
+      align-items: start;
+      position: relative;
+      transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      left: 54px;
+      top: -18px;
+      bottom: -18px;
+      width: 4px;
+      background: linear-gradient(180deg, rgba(224,208,180,0.25), rgba(174,196,255,0.25));
+      z-index: 0;
+    }
+
+    .stage:first-child::before { top: 54px; }
+    .stage:last-child::before { bottom: 54px; }
+
+    .index {
+      position: relative;
+      z-index: 1;
+      width: 64px;
+      height: 64px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(239,227,205,0.95));
+      border: 1px solid rgba(99,82,48,0.08);
+      box-shadow: 0 8px 20px rgba(52, 40, 18, 0.08);
+      margin-left: 22px;
+    }
+
+    .stage h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .stage .lane {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(232, 224, 210, 0.7);
+      color: color-mix(in oklab, var(--ink) 72%, white);
+    }
+
+    .stack h4 {
+      margin: 0 0 10px;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(99,82,48,0.08);
+      background: rgba(255,255,255,0.82);
+    }
+
+    .badge[data-kind="skills"] .swatch { background: var(--skills); }
+    .badge[data-kind="mcp"] .swatch { background: var(--mcp); }
+    .badge[data-kind="automation"] .swatch { background: var(--auto); }
+    .badge[data-kind="review"] .swatch { background: var(--review); }
+
+    .swatch {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+    }
+
+    .highlight {
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(248,245,239,0.95), rgba(255,255,255,0.85));
+      border: 1px dashed rgba(99,82,48,0.12);
+      font-size: 0.95rem;
+    }
+
+    .stage.dimmed {
+      opacity: 0.36;
+      transform: scale(0.992);
+      box-shadow: none;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      padding: 20px 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(99,82,48,0.08);
+      background: rgba(255,255,255,0.75);
+      color: color-mix(in oklab, var(--ink) 75%, white);
+      box-shadow: var(--shadow);
+    }
+
+    .footer-note strong { color: var(--ink); }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .stage {
+        grid-template-columns: 1fr;
+      }
+      .stage::before { left: 32px; }
+      .index { margin-left: 0; }
+      .hero-metrics { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">data-skill / visual workflow</div>
+        <h1>Where AI helps the analytics team</h1>
+        <p class="sub">
+          A visual map of the real team workflow, from business request to deployed output. Each stage shows the work itself and the best AI leverage point, via skills, MCPs, automation, or human review.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>10</strong>
+            <span>workflow stages</span>
+          </div>
+          <div class="metric">
+            <strong>4</strong>
+            <span>AI leverage types</span>
+          </div>
+          <div class="metric">
+            <strong>1</strong>
+            <span>goal: faster execution with control</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="legend">
+        <div>
+          <h2>Legend</h2>
+          <div class="legend-grid" style="margin-top:14px;">
+            <div class="legend-item">
+              <span class="dot" style="background:var(--skills)"></span>
+              <div>
+                <strong>Skills</strong>
+                <p>Reusable playbooks, prompts, checklists, and structured task patterns.</p>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background:var(--mcp)"></span>
+              <div>
+                <strong>MCP</strong>
+                <p>Direct system capability, databases, semantic models, metadata, or tool access.</p>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background:var(--auto)"></span>
+              <div>
+                <strong>Automation</strong>
+                <p>Scheduled jobs, CI, orchestration, pipelines, quality gates, notifications.</p>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background:var(--review)"></span>
+              <div>
+                <strong>Human review</strong>
+                <p>Where judgment, business validation, and risk control still matter most.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="legend-note"><strong>Tip:</strong> click a filter to isolate one AI layer and see where it matters most.</p>
+          <div class="controls">
+            <button class="filter active" data-filter="all">Show all</button>
+            <button class="filter" data-filter="skills">Skills</button>
+            <button class="filter" data-filter="mcp">MCP</button>
+            <button class="filter" data-filter="automation">Automation</button>
+            <button class="filter" data-filter="review">Human review</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="map-header">
+      <div>
+        <h2>End-to-end workflow map</h2>
+        <p>Read top to bottom. The left column shows the stage. The center shows team work. The right side shows where AI can actually accelerate the task without removing control.</p>
+      </div>
+    </div>
+
+    <section class="workflow">
+      <article class="stage" data-kinds="skills review">
+        <div class="index">01</div>
+        <div>
+          <span class="lane">Intake</span>
+          <h3>Business request and scoping</h3>
+          <p>Turn a messy ask into a clear problem statement, success metric, owner, and deliverable.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Clarify the business question</li>
+            <li>Define KPI or decision outcome</li>
+            <li>Estimate effort and priority</li>
+            <li>Route the work to the right lane</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Brief-writing skill</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Stakeholder alignment</span>
+          </div>
+          <div class="highlight">Best use: convert vague requests into structured tickets, assumptions, and acceptance criteria.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="mcp skills">
+        <div class="index">02</div>
+        <div>
+          <span class="lane">Discovery</span>
+          <h3>Data discovery and source mapping</h3>
+          <p>Find the tables, files, APIs, owners, grain, and joins that define the real data path.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Inspect schema and metadata</li>
+            <li>Map business keys and joins</li>
+            <li>Check freshness and ownership</li>
+            <li>Document source risks</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Database MCP</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Schema-summary skill</span>
+          </div>
+          <div class="highlight">Best use: schema exploration, metadata summaries, join suggestions, source cataloging.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="skills mcp automation review">
+        <div class="index">03</div>
+        <div>
+          <span class="lane">Data engineering</span>
+          <h3>Pipeline and ingestion</h3>
+          <p>Move source data into a reliable storage layer with logging, retries, and freshness control.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Connect source systems</li>
+            <li>Build extraction and load jobs</li>
+            <li>Handle incremental logic</li>
+            <li>Monitor failures and reruns</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="skills"><span class="swatch"></span>ETL scaffolding skill</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>DB / API access MCP</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>Scheduling + alerts</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Prod-readiness check</span>
+          </div>
+          <div class="highlight">Best use: script generation, validation SQL, retry logic, observability boilerplate, incident triage.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="skills review">
+        <div class="index">04</div>
+        <div>
+          <span class="lane">Analytics engineering</span>
+          <h3>Modeling and transformation</h3>
+          <p>Turn raw data into trusted business models, reusable marts, and semantic definitions.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Clean and standardize fields</li>
+            <li>Define business logic</li>
+            <li>Create fact and dimension models</li>
+            <li>Document grain and dependencies</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="skills"><span class="swatch"></span>SQL / dbt modeling skill</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Logic validation</span>
+          </div>
+          <div class="highlight">Best use: draft models, naming cleanup, lineage explanation, star-schema review, business-rule translation.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="skills automation review">
+        <div class="index">05</div>
+        <div>
+          <span class="lane">Quality</span>
+          <h3>Data quality and testing</h3>
+          <p>Make trust visible before anyone consumes the output.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Null, duplicate, and integrity checks</li>
+            <li>Reconciliation versus source</li>
+            <li>Threshold and anomaly checks</li>
+            <li>Issue logging and remediation</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Test-generation skill</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>Quality gates</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Root-cause judgment</span>
+          </div>
+          <div class="highlight">Best use: generate assertions, summarize failures, cluster causes, propose fixes before human sign-off.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="mcp skills review">
+        <div class="index">06</div>
+        <div>
+          <span class="lane">BI</span>
+          <h3>Semantic model and dashboard build</h3>
+          <p>Expose trusted metrics through measures, dimensions, RLS, dashboards, and reports.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Create measures and hierarchies</li>
+            <li>Build semantic model</li>
+            <li>Define report logic and views</li>
+            <li>Optimize usability and performance</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Power BI MCP</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>DAX + doc skills</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Business sanity check</span>
+          </div>
+          <div class="highlight">Best use: DAX generation, DAX debugging, naming audits, semantic model documentation, report QA.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="skills review">
+        <div class="index">07</div>
+        <div>
+          <span class="lane">Analysis</span>
+          <h3>Exploration and insight generation</h3>
+          <p>Turn trusted data into a narrative that helps someone make a decision.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Trend and segment analysis</li>
+            <li>Driver breakdown</li>
+            <li>Hypothesis validation</li>
+            <li>Recommendation drafting</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Insight-writing skill</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Decision quality review</span>
+          </div>
+          <div class="highlight">Best use: summarize findings, propose cuts, structure narratives, but keep judgment with the analyst.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="skills mcp review">
+        <div class="index">08</div>
+        <div>
+          <span class="lane">Data science</span>
+          <h3>Predictive modeling and experimentation</h3>
+          <p>Build models when descriptive analytics is not enough.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Define target and metric</li>
+            <li>Create feature set</li>
+            <li>Train and validate models</li>
+            <li>Explain drivers and tradeoffs</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Experiment design skill</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Data access MCP</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Model-risk review</span>
+          </div>
+          <div class="highlight">Best use: notebook scaffolding, feature ideation, experiment templates, explanation drafts, code review support.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="automation skills review">
+        <div class="index">09</div>
+        <div>
+          <span class="lane">Delivery</span>
+          <h3>Deployment and stakeholder delivery</h3>
+          <p>Publish the output safely, explain it clearly, and make it usable.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Deploy pipelines and models</li>
+            <li>Publish dashboards or reports</li>
+            <li>Write release notes</li>
+            <li>Run handoff and training</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="automation"><span class="swatch"></span>CI / release flow</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Docs + note skills</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Release approval</span>
+          </div>
+          <div class="highlight">Best use: release note generation, deployment checklist drafting, stakeholder-ready explainers and FAQs.</div>
+        </div>
+      </article>
+
+      <article class="stage" data-kinds="automation skills review">
+        <div class="index">10</div>
+        <div>
+          <span class="lane">Operations</span>
+          <h3>Monitoring and iteration</h3>
+          <p>Keep the analytics product healthy after release and learn where the next skill should be built.</p>
+        </div>
+        <div class="stack">
+          <h4>Team tasks</h4>
+          <ul>
+            <li>Monitor freshness, usage, and failure</li>
+            <li>Fix incidents and drift</li>
+            <li>Capture stakeholder feedback</li>
+            <li>Prioritize the next improvement</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h4>AI leverage</h4>
+          <div class="badges">
+            <span class="badge" data-kind="automation"><span class="swatch"></span>Alerts + monitoring</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>Incident-summary skill</span>
+            <span class="badge" data-kind="review"><span class="swatch"></span>Priority judgment</span>
+          </div>
+          <div class="highlight">Best use: summarize incidents, cluster enhancement requests, draft root causes, identify the next high-ROI automation.</div>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer-note">
+      <strong>How to use this:</strong> if a stage repeats often, has structured inputs, and has low ambiguity, it is a good candidate for a reusable skill or MCP-backed workflow. If the stage has high business risk or unclear tradeoffs, keep AI as draft support and require human review.
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter');
+    const stages = document.querySelectorAll('.stage');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+
+        stages.forEach((stage) => {
+          const kinds = stage.dataset.kinds.split(' ');
+          const show = filter === 'all' || kinds.includes(filter);
+          stage.classList.toggle('dimmed', !show);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
