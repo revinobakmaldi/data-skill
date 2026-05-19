@@ -1,0 +1,108 @@
+# Google MCP Toolbox — tool definitions for BigQuery access
+# Docs: https://github.com/googleapis/mcp-toolbox
+# Update project, dataset, and table references to match your environment.
+
+sources:
+  bigquery-analytics:
+    kind: bigquery
+    project: YOUR_GCP_PROJECT_ID
+
+tools:
+  # --- Schema Discovery ---
+  list-datasets:
+    kind: bigquery-sql
+    source: bigquery-analytics
+    description: List all datasets in the project
+    statement: |
+      SELECT schema_name AS dataset
+      FROM INFORMATION_SCHEMA.SCHEMATA
+      ORDER BY schema_name
+
+  list-tables:
+    kind: bigquery-sql
+    source: bigquery-analytics
+    description: List all tables in a dataset
+    parameters:
+      - name: dataset
+        type: string
+        description: Dataset name (e.g. 'analytics_mart')
+    statement: |
+      SELECT table_name, row_count, size_bytes, last_modified_time
+      FROM `${dataset}`.INFORMATION_SCHEMA.TABLE_STORAGE
+      ORDER BY table_name
+
+  describe-table:
+    kind: bigquery-sql
+    source: bigquery-analytics
+    description: Get column names, types, and descriptions for a table
+    parameters:
+      - name: dataset
+        type: string
+        description: Dataset name
+      - name: table
+        type: string
+        description: Table name
+    statement: |
+      SELECT column_name, data_type, is_nullable, description
+      FROM `${dataset}`.INFORMATION_SCHEMA.COLUMN_FIELD_PATHS
+      WHERE table_name = '${table}'
+      ORDER BY ordinal_position
+
+  # --- Data Access ---
+  run-sql:
+    kind: bigquery-sql
+    source: bigquery-analytics
+    description: Run a read-only SQL query and return results (max 1000 rows)
+    parameters:
+      - name: sql
+        type: string
+        description: The SELECT query to run
+    statement: ${sql}
+
+  sample-table:
+    kind: bigquery-sql
+    source: bigquery-analytics
+    description: Preview the first N rows of a table
+    parameters:
+      - name: dataset
+        type: string
+      - name: table
+        type: string
+      - name: limit
+        type: integer
+        description: Number of rows to return (default 10)
+        default: 10
+    statement: |
+      SELECT * FROM `${dataset}.${table}` LIMIT ${limit}
+
+  # --- Data Quality ---
+  profile-column:
+    kind: bigquery-sql
+    source: bigquery-analytics
+    description: Profile a single column — null rate, distinct count, min/max
+    parameters:
+      - name: dataset
+        type: string
+      - name: table
+        type: string
+      - name: column
+        type: string
+    statement: |
+      SELECT
+        '${column}' AS column_name,
+        COUNT(*) AS total_rows,
+        COUNTIF(${column} IS NULL) AS null_count,
+        ROUND(100.0 * COUNTIF(${column} IS NULL) / COUNT(*), 2) AS null_pct,
+        COUNT(DISTINCT ${column}) AS distinct_count,
+        MIN(CAST(${column} AS STRING)) AS min_val,
+        MAX(CAST(${column} AS STRING)) AS max_val
+      FROM `${dataset}.${table}`
+
+toolsets:
+  analytics-team:
+    - list-datasets
+    - list-tables
+    - describe-table
+    - run-sql
+    - sample-table
+    - profile-column

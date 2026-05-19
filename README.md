@@ -1,139 +1,107 @@
 # data-skill
 
-Repo for real AI resources the data team can use across:
-- data engineering
-- analytics engineering / modeling
-- BI / Power BI
-- analysis
-- data science
-- reporting and delivery
+AI skills, tools, and MCP configs that supercharge the analytics team.
+Designed for use with **Claude Code**, **AWS Kiro**, **Codex**, and other AI coding assistants.
 
-This repo is not a fake local skill pack.
-It is a curated directory of **real external skills, MCPs, tools, frameworks, and workflow references** mapped to the team workflow.
+---
 
-## Start here
+## What's in here
 
-- `TEAM_WORKFLOW_MAP.html` , visual workflow and AI leverage map
-- `REAL_RESOURCES.md` , main stage-by-stage resource list
-- `catalog/real-workflow-resources.yaml` , machine-readable workflow mapping
-- `SKILLS_INDEX.md` , fast index of the most relevant external resources
+| Directory | What it is |
+|-----------|-----------|
+| `CLAUDE.md` | Main instructions for Claude Code and AI assistants |
+| `AGENTS.md` | Instructions for Codex, Copilot Workspace, and agent-based tools |
+| `skills/` | Claude Code skill files — invoke with `/skill-name` |
+| `prompts/` | Copy-paste prompt templates for daily analytics tasks |
+| `scripts/` | Working Python scripts for data ops |
+| `mcp/configs/` | Ready-to-use MCP server JSON configs |
 
-## What this repo currently contains
+---
 
-### 1. Workflow map
-A visual map of the analytics product workflow, including where AI can help through:
-- MCPs
-- tools
-- automation
-- human review
+## Skills (Claude Code)
 
-### 2. Real external resources
-Curated internet resources aligned to the workflow, including:
-- MCP servers
-- orchestration tools
-- transformation tools
-- data quality frameworks
-- reporting tools
-- LLM evaluation / observability tools
-- ML experimentation tools
+Drop the files in `skills/` into your Claude Code skills directory (`~/.claude/skills/`).
 
-### 3. Lightweight reference docs
-Small internal docs for:
-- MCP references
-- tool references
-- automation references
+| Skill | What it does |
+|-------|-------------|
+| `dbt-model` | Generate dbt SQL + schema.yml + tests from a source table |
+| `sql-analyst` | Answer business questions with production BigQuery SQL |
+| `insight-writer` | Turn KPI data into executive narratives |
+| `dag-builder` | Generate Airflow DAGs from a pipeline description |
 
-## Current high-priority resources
+---
 
-### Core MCPs
-- `googleapis/mcp-toolbox`  
-  https://github.com/googleapis/mcp-toolbox
-- `microsoft/powerbi-modeling-mcp`  
-  https://github.com/microsoft/powerbi-modeling-mcp
-- `dbt-labs/dbt-mcp`  
-  https://github.com/dbt-labs/dbt-mcp
+## Prompt Templates
 
-### Pipeline and ingestion
-- `apache/airflow`  
-  https://github.com/apache/airflow
-- `astronomer/astro-sdk`  
-  https://github.com/astronomer/astro-sdk
-- `airbytehq/airbyte`  
-  https://github.com/airbytehq/airbyte
-- `dlt-hub/dlt`  
-  https://github.com/dlt-hub/dlt
+Copy-paste prompts for tasks you do regularly.
 
-### Modeling and transformation
-- `dbt-labs/dbt-core`  
-  https://github.com/dbt-labs/dbt-core
-- `dbt-labs/dbt-utils`  
-  https://github.com/dbt-labs/dbt-utils
-- `dbt-labs/dbt-project-evaluator`  
-  https://github.com/dbt-labs/dbt-project-evaluator
+| Prompt | Use it for |
+|--------|-----------|
+| `sql-from-question.md` | Business question → SQL |
+| `dbt-model-generator.md` | Source schema → full dbt model package |
+| `insight-to-narrative.md` | KPI table → executive summary |
+| `data-quality-checks.md` | Table profile → dbt-expectations / GE tests |
+| `dashboard-wireframe.md` | Dashboard brief → HTML prototype |
+| `dag-scaffold.md` | Pipeline description → Airflow DAG |
 
-### Data quality and observability
-- `great-expectations/great_expectations`  
-  https://github.com/great-expectations/great_expectations
-- `calogica/dbt-expectations`  
-  https://github.com/calogica/dbt-expectations
-- `elementary-data/elementary`  
-  https://github.com/elementary-data/elementary
+---
 
-### Analytics product build
-- `data-goblin/power-bi-agentic-development`  
-  https://github.com/data-goblin/power-bi-agentic-development
-- `RuiRomano/powerbi-agentic-mcp-cloud-agent`  
-  https://github.com/RuiRomano/powerbi-agentic-mcp-cloud-agent
-- `quarto-dev/quarto-cli`  
-  https://github.com/quarto-dev/quarto-cli
-- `evidence-dev/evidence`  
-  https://github.com/evidence-dev/evidence
-- `microsoft/playwright`  
-  https://github.com/microsoft/playwright
+## MCP Server Configs
 
-### Insight generation / LLM ops
-- `promptfoo/promptfoo`  
-  https://github.com/promptfoo/promptfoo
-- `langfuse/langfuse`  
-  https://github.com/langfuse/langfuse
-- `evidentlyai/evidently`  
-  https://github.com/evidentlyai/evidently
+JSON snippets ready to paste into `claude_desktop_config.json`.
 
-### Data science
-- `mlflow/mlflow`  
-  https://github.com/mlflow/mlflow
-- `scikit-learn/scikit-learn`  
-  https://github.com/scikit-learn/scikit-learn
-- `alteryx/featuretools`  
-  https://github.com/alteryx/featuretools
+| Config | What it gives you |
+|--------|------------------|
+| `bigquery-toolbox.json` | BigQuery schema discovery + SQL execution via Google MCP Toolbox |
+| `toolbox-config.yaml` | Tool definitions: list tables, describe columns, profile data, run SQL |
+| `dbt-mcp.json` | dbt model exploration, semantic queries, dbt commands |
+| `powerbi-mcp.json` | DAX generation, semantic model edits, Power BI report support |
 
-## Recommended use of this repo
+### Quickstart (Claude Desktop)
 
-Use this repo to answer 3 questions:
+1. Open `~/Library/Application Support/Claude/claude_desktop_config.json`
+2. Merge the `mcpServers` block from the config file you want
+3. Update the env vars (project ID, workspace ID, etc.)
+4. Restart Claude Desktop
 
-1. **What is the workflow stage?**  
-   Check `TEAM_WORKFLOW_MAP.html`
+---
 
-2. **What real tools/MCPs fit that stage?**  
-   Check `REAL_RESOURCES.md`
+## Scripts
 
-3. **Which resources should we evaluate, clone, or adopt?**  
-   Use `SKILLS_INDEX.md` and the YAML catalog as the shortlist.
+| Script | Usage |
+|--------|-------|
+| `scripts/data_to_claude.py` | `python scripts/data_to_claude.py --file data.csv --question "What are the trends?"` |
+| `scripts/html_to_pdf.py` | `python scripts/html_to_pdf.py report.html -o report.pdf` |
 
-## Current gaps
+### data_to_claude.py requirements
+```bash
+pip install anthropic pandas tabulate
+export ANTHROPIC_API_KEY=sk-ant-...
+```
 
-This repo still needs a better decision layer for:
-- clone now vs reference only
-- team priority ranking
-- owner by function
-- implementation status
+### html_to_pdf.py requirements
+```bash
+pip install playwright
+playwright install chromium
+```
 
-## Next improvement
+---
 
-The next useful upgrade is to add a matrix like:
-- resource
-- workflow stage
-- team function
-- use case
-- maturity
-- adopt now / later / reference only
+## Team Stack
+
+| Layer | Tool |
+|-------|------|
+| Orchestration | Apache Airflow |
+| Transformation | dbt Core |
+| Data warehouse | BigQuery |
+| Data quality | dbt-expectations + Great Expectations |
+| BI | Power BI + HTML reports |
+| LLM | Anthropic Claude API (`claude-opus-4-6`) |
+
+---
+
+## Contributing
+
+- Add a skill: create `skills/your-skill-name.md` following the format of existing skills
+- Add a prompt: create `prompts/your-prompt-name.md` with template + example
+- Add a script: add to `scripts/`, include usage in docstring, update this README

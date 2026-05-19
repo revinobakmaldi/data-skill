@@ -1,0 +1,27 @@
+{
+  "_comment": "dbt MCP Server — AI-aware dbt workflows for Claude Code / Claude Desktop",
+  "_setup": [
+    "1. Install: pip install dbt-mcp",
+    "2. Set DBT_PROJECT_DIR to your dbt project root",
+    "3. Set DBT_PROFILES_DIR if your profiles.yml is in a non-default location",
+    "4. Add this block to your claude_desktop_config.json under 'mcpServers'"
+  ],
+  "_docs": "https://github.com/dbt-labs/dbt-mcp",
+  "_capabilities": [
+    "List and describe dbt models",
+    "Run dbt commands (compile, run, test, build)",
+    "Query the dbt semantic layer (if configured)",
+    "Generate model documentation",
+    "Explore model lineage and dependencies"
+  ],
+
+  "dbt": {
+    "command": "python",
+    "args": ["-m", "dbt_mcp.server"],
+    "env": {
+      "DBT_PROJECT_DIR": "/path/to/your/dbt/project",
+      "DBT_PROFILES_DIR": "~/.dbt",
+      "DBT_TARGET": "dev"
+    }
+  }
+}

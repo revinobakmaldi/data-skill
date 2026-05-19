@@ -1,0 +1,27 @@
+{
+  "_comment": "Microsoft Power BI Modeling MCP — DAX generation and semantic model edits",
+  "_setup": [
+    "1. Install: pip install powerbi-modeling-mcp",
+    "2. Authenticate: az login (requires Azure CLI)",
+    "3. Set POWERBI_WORKSPACE_ID to your Power BI workspace GUID",
+    "   Find it in Power BI Service → Workspace → Settings → Workspace info",
+    "4. Add this block to your claude_desktop_config.json under 'mcpServers'"
+  ],
+  "_docs": "https://github.com/microsoft/powerbi-modeling-mcp",
+  "_capabilities": [
+    "Generate and explain DAX measures",
+    "Inspect and edit semantic model tables, columns, and relationships",
+    "Auto-document measures and columns",
+    "Enforce naming conventions across semantic model",
+    "Validate DAX syntax before applying to the model"
+  ],
+
+  "powerbi": {
+    "command": "python",
+    "args": ["-m", "powerbi_mcp.server"],
+    "env": {
+      "POWERBI_WORKSPACE_ID": "YOUR_WORKSPACE_GUID_HERE",
+      "POWERBI_TENANT_ID": "YOUR_AZURE_TENANT_ID"
+    }
+  }
+}

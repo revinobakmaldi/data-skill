@@ -1,0 +1,20 @@
+{
+  "_comment": "Google MCP Toolbox — BigQuery access for Claude Code / Claude Desktop",
+  "_setup": [
+    "1. Install: pip install mcp-toolbox",
+    "2. Set env var: GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account-key.json",
+    "   OR run: gcloud auth application-default login",
+    "3. Update 'project' and 'dataset' fields below with your actual values",
+    "4. Add this block to your claude_desktop_config.json under 'mcpServers'"
+  ],
+  "_docs": "https://github.com/googleapis/mcp-toolbox",
+
+  "bigquery": {
+    "command": "python",
+    "args": ["-m", "toolbox.server"],
+    "env": {
+      "GOOGLE_CLOUD_PROJECT": "YOUR_GCP_PROJECT_ID",
+      "TOOLBOX_CONFIG": "mcp/configs/toolbox-config.yaml"
+    }
+  }
+}
