@@ -97,7 +97,7 @@
 
     .hero-metrics {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -332,6 +332,15 @@
       font-size: 0.95rem;
     }
 
+    .skill-ref {
+      font-family: ui-monospace, "SF Mono", monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: rgba(99,82,48,0.06);
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
     .stage.dimmed {
       opacity: 0.36;
       transform: scale(0.992);
@@ -357,7 +366,7 @@
       }
       .stage::before { left: 32px; }
       .index { margin-left: 0; }
-      .hero-metrics { grid-template-columns: 1fr; }
+      .hero-metrics { grid-template-columns: 1fr 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -369,10 +378,10 @@
   <div class="shell">
     <section class="hero">
       <div class="hero-card">
-        <div class="eyebrow">data-skill / visual workflow</div>
+        <div class="eyebrow">data-skill / visual workflow — updated 2026-05-19</div>
         <h1>Where AI helps the analytics team</h1>
         <p class="sub">
-          A visual map of the real team workflow, from business request to deployed output. Each stage shows the work itself and the best AI leverage point, via skills, MCPs, automation, or human review.
+          A visual map of the real team workflow, from business request to deployed output. Each stage shows the work itself and the actual skills, MCPs, and scripts now available in this repo.
         </p>
         <div class="hero-metrics">
           <div class="metric">
@@ -380,8 +389,12 @@
             <span>workflow stages</span>
           </div>
           <div class="metric">
+            <strong>21</strong>
+            <span>skills in repo</span>
+          </div>
+          <div class="metric">
             <strong>4</strong>
-            <span>AI leverage types</span>
+            <span>MCP servers configured</span>
           </div>
           <div class="metric">
             <strong>1</strong>
@@ -398,21 +411,21 @@
               <span class="dot" style="background:var(--skills)"></span>
               <div>
                 <strong>Skills</strong>
-                <p>Reusable playbooks, prompts, checklists, and structured task patterns.</p>
+                <p>Reusable playbooks, prompts, and task patterns. Files in <code>skills/</code> — copy to <code>~/.claude/skills/</code>.</p>
               </div>
             </div>
             <div class="legend-item">
               <span class="dot" style="background:var(--mcp)"></span>
               <div>
                 <strong>MCP</strong>
-                <p>Direct system capability, databases, semantic models, metadata, or tool access.</p>
+                <p>Direct system access: databases, semantic models, Azure DevOps. Configs in <code>mcp/configs/</code>.</p>
               </div>
             </div>
             <div class="legend-item">
               <span class="dot" style="background:var(--auto)"></span>
               <div>
                 <strong>Automation</strong>
-                <p>Scheduled jobs, CI, orchestration, pipelines, quality gates, notifications.</p>
+                <p>Scheduled jobs, CI, orchestration, quality gates. Scripts in <code>scripts/</code>.</p>
               </div>
             </div>
             <div class="legend-item">
@@ -426,7 +439,7 @@
         </div>
 
         <div>
-          <p class="legend-note"><strong>Tip:</strong> click a filter to isolate one AI layer and see where it matters most.</p>
+          <p class="legend-note"><strong>MCPs installed:</strong> BigQuery Toolbox · dbt MCP · Power BI MCP · Azure DevOps MCP</p>
           <div class="controls">
             <button class="filter active" data-filter="all">Show all</button>
             <button class="filter" data-filter="skills">Skills</button>
@@ -441,11 +454,13 @@
     <div class="map-header">
       <div>
         <h2>End-to-end workflow map</h2>
-        <p>Read top to bottom. The left column shows the stage. The center shows team work. The right side shows where AI can actually accelerate the task without removing control.</p>
+        <p>Read top to bottom. Left column: stage. Center: team work. Right: AI leverage with actual file references from this repo.</p>
       </div>
     </div>
 
     <section class="workflow">
+
+      <!-- 01 Assessment -->
       <article class="stage" data-kinds="skills mcp review">
         <div class="index">01</div>
         <div>
@@ -460,19 +475,25 @@
             <li>Define KPI scope, priority, and expected deliverable</li>
             <li>Build an early HTML prototype of the analytics product</li>
             <li>Inspect source systems, joins, grain, and data risks</li>
+            <li>Create work items in Azure DevOps for the build</li>
           </ul>
         </div>
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Brief + HTML prototyping skills</span>
-            <span class="badge" data-kind="mcp"><span class="swatch"></span>Database / metadata MCP</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dashboard-wireframe</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>senior-data-engineer persona</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>BigQuery Toolbox — schema discovery</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Azure DevOps — create work items</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Stakeholder alignment</span>
           </div>
-          <div class="highlight">Best use: structure vague requests, generate fast HTML prototypes, summarize schema context, and surface early risks before build starts.</div>
+          <div class="highlight">
+            Generate HTML prototypes fast with <span class="skill-ref">prompts/dashboard-wireframe.md</span>. Explore source schemas without leaving Claude using BigQuery MCP. Create sprint tasks in Azure DevOps directly.
+          </div>
         </div>
       </article>
 
+      <!-- 02 Pipeline -->
       <article class="stage" data-kinds="skills mcp automation review">
         <div class="index">02</div>
         <div>
@@ -485,23 +506,28 @@
           <ul>
             <li>Connect source systems</li>
             <li>Build extraction and load jobs in Airflow</li>
-            <li>Handle incremental logic</li>
+            <li>Handle incremental logic and late-arriving data</li>
             <li>Monitor failures and reruns</li>
           </ul>
         </div>
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Airflow pipeline skill</span>
-            <span class="badge" data-kind="mcp"><span class="swatch"></span>DB / API access MCP</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dag-builder skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>senior-data-engineer persona</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>BigQuery Toolbox — data access</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Azure DevOps — repo + PR management</span>
             <span class="badge" data-kind="automation"><span class="swatch"></span>Airflow scheduling + alerts</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Prod-readiness check</span>
           </div>
-          <div class="highlight">Best use: Airflow DAG scaffolding, validation SQL, retry logic, observability boilerplate, and incident triage.</div>
+          <div class="highlight">
+            Generate Airflow DAGs from a pipeline description with <span class="skill-ref">skills/dag-builder.md</span> or <span class="skill-ref">prompts/dag-scaffold.md</span>. Push code via Azure DevOps MCP and open PRs without leaving Claude.
+          </div>
         </div>
       </article>
 
-      <article class="stage" data-kinds="skills review">
+      <!-- 03 Modeling -->
+      <article class="stage" data-kinds="skills mcp automation review">
         <div class="index">03</div>
         <div>
           <span class="lane">Analytics engineering</span>
@@ -511,23 +537,30 @@
         <div class="stack">
           <h4>Team tasks</h4>
           <ul>
-            <li>Clean and standardize fields</li>
-            <li>Define business logic</li>
+            <li>Clean and standardize fields in staging layer</li>
+            <li>Define business logic in intermediate layer</li>
             <li>Create fact and dimension models in dbt</li>
-            <li>Document grain and dependencies</li>
+            <li>Document grain, dependencies, and ownership</li>
           </ul>
         </div>
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt modeling skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt-model skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt-labs: analytics-engineering</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>altimate-ai: creating-dbt-models</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>altimate-ai: migrating-sql-to-dbt</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>dbt MCP — semantic queries</span>
             <span class="badge" data-kind="automation"><span class="swatch"></span>dbt runs + tests</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Logic validation</span>
           </div>
-          <div class="highlight">Best use: draft dbt models, naming cleanup, lineage explanation, star-schema review, and business-rule translation.</div>
+          <div class="highlight">
+            Generate staging/intermediate/mart models with schema.yml using <span class="skill-ref">skills/dbt-model.md</span> or <span class="skill-ref">prompts/dbt-model-generator.md</span>. Use dbt MCP to query the semantic layer. Migrate legacy SQL layer-by-layer with the altimate-ai skill.
+          </div>
         </div>
       </article>
 
+      <!-- 04 Quality -->
       <article class="stage" data-kinds="skills automation review">
         <div class="index">04</div>
         <div>
@@ -547,20 +580,26 @@
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Test-generation skill</span>
-            <span class="badge" data-kind="automation"><span class="swatch"></span>Quality gates</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>data-quality-auditor</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt-labs: adding-dbt-unit-test</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>altimate-ai: testing-dbt-models</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>altimate-ai: debugging-dbt-errors</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>dbt-expectations quality gates</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Root-cause judgment</span>
           </div>
-          <div class="highlight">Best use: generate assertions, summarize failures, cluster causes, propose fixes before human sign-off.</div>
+          <div class="highlight">
+            Generate dbt-expectations or Great Expectations checks from a table profile using <span class="skill-ref">prompts/data-quality-checks.md</span>. Debug failures with the altimate-ai debugging skill. Use the community data-quality-auditor for full audits.
+          </div>
         </div>
       </article>
 
+      <!-- 05 BI -->
       <article class="stage" data-kinds="mcp skills automation review">
         <div class="index">05</div>
         <div>
           <span class="lane">BI</span>
           <h3>Analytics product build</h3>
-          <p>Package trusted metrics into the right product form, exploratory reports in Power BI, or self-explanatory HTML reports rendered to PDF.</p>
+          <p>Package trusted metrics into the right product form — exploratory reports in Power BI, or self-explanatory HTML reports rendered to PDF.</p>
         </div>
         <div class="stack">
           <h4>Team tasks</h4>
@@ -575,43 +614,52 @@
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="mcp"><span class="swatch"></span>Power BI MCP</span>
-            <span class="badge" data-kind="skills"><span class="swatch"></span>DAX + narrative HTML skills</span>
-            <span class="badge" data-kind="automation"><span class="swatch"></span>HTML-to-PDF rendering</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Power BI MCP — DAX + semantic model</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>insight-writer skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dashboard-wireframe prompts</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>html_to_pdf.py script</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Business sanity check</span>
           </div>
-          <div class="highlight">Best use: DAX support for exploratory Power BI reports, plus narrative HTML generation and automated PDF rendering for stakeholder-ready deliverables.</div>
+          <div class="highlight">
+            DAX generation and semantic model edits via Power BI MCP (<span class="skill-ref">mcp/configs/powerbi-mcp.json</span>). Convert any HTML report to PDF automatically with <span class="skill-ref">scripts/html_to_pdf.py</span>.
+          </div>
         </div>
       </article>
 
+      <!-- 06 Analysis -->
       <article class="stage" data-kinds="skills mcp automation review">
         <div class="index">06</div>
         <div>
           <span class="lane">Analysis</span>
           <h3>Exploration and insight generation</h3>
-          <p>Turn trusted data into decision-ready insight by injecting structured data and prompts into an LLM, then reviewing the output for business quality.</p>
+          <p>Turn trusted data into decision-ready insight — query it, analyze it, and write the narrative that gets acted on.</p>
         </div>
         <div class="stack">
           <h4>Team tasks</h4>
           <ul>
-            <li>Prepare the dataset or summary payload</li>
-            <li>Inject data and prompt into the LLM script</li>
-            <li>Generate insights, analysis, and recommendations</li>
-            <li>Review the output before stakeholder use</li>
+            <li>Write and run SQL to answer business questions</li>
+            <li>Analyze datasets for trends and anomalies</li>
+            <li>Generate insights and recommendations</li>
+            <li>Write executive narratives from KPI data</li>
           </ul>
         </div>
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Insight prompt + eval skill</span>
-            <span class="badge" data-kind="mcp"><span class="swatch"></span>Data access / retrieval MCP</span>
-            <span class="badge" data-kind="automation"><span class="swatch"></span>Data-to-LLM script</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>sql-analyst skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>insight-writer skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>data-analyst skill</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt-labs: NL questions with dbt</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>BigQuery Toolbox — run SQL</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Analyst fact check</span>
           </div>
-          <div class="highlight">Best use: structured data injection, prompt templating, prompt evaluation, insight generation, and analyst fact check before the narrative is shared.</div>
+          <div class="highlight">
+            Business question → SQL with <span class="skill-ref">skills/sql-analyst.md</span>. Paste data and get analysis with <span class="skill-ref">skills/data-analyst.md</span>. KPI table → executive narrative with <span class="skill-ref">skills/insight-writer.md</span>. BigQuery MCP runs queries live without copy-paste.
+          </div>
         </div>
       </article>
 
+      <!-- 07 Data science -->
       <article class="stage" data-kinds="skills mcp review">
         <div class="index">07</div>
         <div>
@@ -631,15 +679,20 @@
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Experiment design skill</span>
-            <span class="badge" data-kind="mcp"><span class="swatch"></span>Data access MCP</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>senior-data-scientist persona</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>senior-ml-engineer persona</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>dbt-labs: semantic layer queries</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>BigQuery Toolbox — feature data access</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Model-risk review</span>
           </div>
-          <div class="highlight">Best use: notebook scaffolding, feature ideation, experiment templates, explanation drafts, code review support.</div>
+          <div class="highlight">
+            Use <span class="skill-ref">skills/community/senior-data-scientist.md</span> and <span class="skill-ref">skills/community/senior-ml-engineer.md</span> for notebook scaffolding, feature ideation, experiment design, and model explainability. BigQuery MCP fetches feature data live.
+          </div>
         </div>
       </article>
 
-      <article class="stage" data-kinds="automation skills review">
+      <!-- 08 Delivery -->
+      <article class="stage" data-kinds="automation skills mcp review">
         <div class="index">08</div>
         <div>
           <span class="lane">Delivery</span>
@@ -651,27 +704,32 @@
           <ul>
             <li>Deploy pipelines and models</li>
             <li>Publish dashboards or reports</li>
-            <li>Write release notes</li>
-            <li>Run handoff and training</li>
+            <li>Write release notes and documentation</li>
+            <li>Run handoff and stakeholder training</li>
           </ul>
         </div>
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Azure DevOps — PR review + merge</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Azure DevOps — wiki docs</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>insight-writer — release notes</span>
             <span class="badge" data-kind="automation"><span class="swatch"></span>CI / release flow</span>
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Docs + note skills</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Release approval</span>
           </div>
-          <div class="highlight">Best use: release note generation, deployment checklist drafting, stakeholder-ready explainers and FAQs.</div>
+          <div class="highlight">
+            Open and merge PRs, write wiki documentation, and update work item states directly via Azure DevOps MCP (<span class="skill-ref">skills/azure-devops.md</span>). Generate release notes and stakeholder explainers with <span class="skill-ref">skills/insight-writer.md</span>.
+          </div>
         </div>
       </article>
 
-      <article class="stage" data-kinds="automation skills review">
+      <!-- 09 Monitoring -->
+      <article class="stage" data-kinds="automation skills mcp review">
         <div class="index">09</div>
         <div>
           <span class="lane">Operations</span>
           <h3>Monitoring and iteration</h3>
-          <p>Keep the analytics product healthy after release and learn where the next skill should be built.</p>
+          <p>Keep the analytics product healthy after release and prioritize the next improvement.</p>
         </div>
         <div class="stack">
           <h4>Team tasks</h4>
@@ -685,17 +743,24 @@
         <div class="stack">
           <h4>AI leverage</h4>
           <div class="badges">
-            <span class="badge" data-kind="automation"><span class="swatch"></span>Alerts + monitoring</span>
-            <span class="badge" data-kind="skills"><span class="swatch"></span>Incident-summary skill</span>
+            <span class="badge" data-kind="mcp"><span class="swatch"></span>Azure DevOps — work items + queries</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>data-quality-auditor</span>
+            <span class="badge" data-kind="skills"><span class="swatch"></span>altimate-ai: debugging-dbt-errors</span>
+            <span class="badge" data-kind="automation"><span class="swatch"></span>Airflow alerts + monitoring</span>
             <span class="badge" data-kind="review"><span class="swatch"></span>Priority judgment</span>
           </div>
-          <div class="highlight">Best use: summarize incidents, cluster enhancement requests, draft root causes, identify the next high-ROI automation.</div>
+          <div class="highlight">
+            Query open bugs and enhancement requests in Azure DevOps boards via MCP (<span class="skill-ref">skills/azure-devops.md</span>). Debug dbt failures with the altimate-ai skill. Use <span class="skill-ref">skills/community/data-quality-auditor.md</span> to profile and triage data issues.
+          </div>
         </div>
       </article>
+
     </section>
 
     <div class="footer-note">
-      <strong>How to use this:</strong> if a stage repeats often, has structured inputs, and has low ambiguity, it is a good candidate for a reusable skill or MCP-backed workflow. If the stage has high business risk or unclear tradeoffs, keep AI as draft support and require human review.
+      <strong>Skills in this repo:</strong> 5 custom · 6 from dbt-labs/dbt-agent-skills (Apache-2.0) · 5 from AltimateAI/data-engineering-skills (MIT) · 5 from alirezarezvani/claude-skills (MIT) · 1 Azure DevOps skill.
+      MCPs: BigQuery Toolbox · dbt MCP · Power BI MCP · Azure DevOps MCP (microsoft/azure-devops-mcp, MIT).
+      See <code>README.md</code> for setup instructions.
     </div>
   </div>
 
