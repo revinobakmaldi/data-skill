@@ -22,12 +22,52 @@ Designed for use with **Claude Code**, **AWS Kiro**, **Codex**, and other AI cod
 
 Drop the files in `skills/` into your Claude Code skills directory (`~/.claude/skills/`).
 
+### Custom skills (built for this team)
+
 | Skill | What it does |
 |-------|-------------|
 | `dbt-model` | Generate dbt SQL + schema.yml + tests from a source table |
 | `sql-analyst` | Answer business questions with production BigQuery SQL |
 | `insight-writer` | Turn KPI data into executive narratives |
 | `dag-builder` | Generate Airflow DAGs from a pipeline description |
+| `data-analyst` | Analyze pasted data tables and answer business questions |
+
+### From dbt-labs/dbt-agent-skills (Apache-2.0)
+
+Source: https://github.com/dbt-labs/dbt-agent-skills
+
+| Skill | What it does |
+|-------|-------------|
+| `dbt-labs/using-dbt-for-analytics-engineering` | Core dbt workflow — model building, testing, documentation |
+| `dbt-labs/adding-dbt-unit-test` | Add unit tests to dbt models (dict/csv/sql formats) |
+| `dbt-labs/troubleshooting-dbt-job-errors` | Diagnose and fix dbt job failures |
+| `dbt-labs/running-dbt-commands` | CLI execution, selectors, variables, deferral |
+| `dbt-labs/answering-natural-language-questions-with-dbt` | Query semantic layer with natural language |
+| `dbt-labs/building-dbt-semantic-layer` | Build semantic models, entities, and metrics |
+
+### From AltimateAI/data-engineering-skills (MIT)
+
+Source: https://github.com/AltimateAI/data-engineering-skills
+
+| Skill | What it does |
+|-------|-------------|
+| `altimate-ai/creating-dbt-models` | Full dbt model creation workflow with conventions |
+| `altimate-ai/debugging-dbt-errors` | Debug errors with 3-failure rule methodology |
+| `altimate-ai/testing-dbt-models` | Add generic and custom tests to models |
+| `altimate-ai/migrating-sql-to-dbt` | Convert existing SQL to dbt layer-by-layer |
+| `altimate-ai/developing-incremental-models` | Incremental strategies, unique keys, late-arriving data |
+
+### From alirezarezvani/claude-skills (MIT)
+
+Source: https://github.com/alirezarezvani/claude-skills
+
+| Skill | What it does |
+|-------|-------------|
+| `community/senior-data-engineer` | Senior DE persona — architecture, pipelines, best practices |
+| `community/senior-data-scientist` | Senior DS persona — modeling, experimentation, ML workflows |
+| `community/senior-ml-engineer` | Senior MLE persona — model deployment, MLOps |
+| `community/sql-database-assistant` | SQL expert — query writing, optimization, schema design |
+| `community/data-quality-auditor` | Data quality audit — profiling, validation, issue detection |
 
 ---
 
