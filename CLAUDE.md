@@ -14,7 +14,7 @@ It defines how AI should behave when working in this analytics codebase.
 | Data warehouse | BigQuery (project: `your-gcp-project`, dataset prefix: `analytics_`) |
 | Data quality | dbt-expectations + Great Expectations |
 | BI / reporting | Power BI + HTML reports (rendered via Playwright) |
-| LLM ops | Anthropic Claude API (`claude-opus-4-6`) |
+| LLM / AI coding | Claude Code (CLI) |
 | Scripting | Python 3.11+ |
 
 ---

@@ -96,7 +96,7 @@ playwright install chromium
 | Data warehouse | BigQuery |
 | Data quality | dbt-expectations + Great Expectations |
 | BI | Power BI + HTML reports |
-| LLM | Anthropic Claude API (`claude-opus-4-6`) |
+| LLM / AI coding | Claude Code (CLI) |
 
 ---
 
