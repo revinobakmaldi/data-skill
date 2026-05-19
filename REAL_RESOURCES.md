@@ -161,19 +161,22 @@ Source of truth for real internet resources that map to the analytics workflow.
   https://github.com/evidentlyai/evidently  
   Useful for monitoring model and output drift.
 
-## Recommended priority
+## Status
 
-If this repo needs a high-signal first pass, start with these:
+Resources now configured in this repo (see `mcp/configs/` and `skills/`):
 
-1. `googleapis/mcp-toolbox`
-2. `apache/airflow`
-3. `dbt-labs/dbt-core`
-4. `dbt-labs/dbt-mcp`
-5. `great-expectations/great_expectations`
-6. `elementary-data/elementary`
-7. `microsoft/powerbi-modeling-mcp`
-8. `data-goblin/power-bi-agentic-development`
-9. `quarto-dev/quarto-cli`
-10. `promptfoo/promptfoo`
-11. `langfuse/langfuse`
-12. `microsoft/playwright`
+- ✅ `googleapis/mcp-toolbox` — config at `mcp/configs/bigquery-toolbox.json`
+- ✅ `dbt-labs/dbt-mcp` — config at `mcp/configs/dbt-mcp.json`; skills from `dbt-labs/dbt-agent-skills`
+- ✅ `microsoft/powerbi-modeling-mcp` — config at `mcp/configs/powerbi-mcp.json`
+- ✅ `microsoft/azure-devops-mcp` — config at `mcp/configs/azure-devops-mcp.json`
+- ✅ `microsoft/playwright` — wrapped in `scripts/html_to_pdf.py`
+
+Still external references (not yet configured locally):
+
+- ⬜ `apache/airflow` — orchestration platform, install separately
+- ⬜ `dbt-labs/dbt-core` — transformation framework, install separately
+- ⬜ `great-expectations/great_expectations` — quality framework, install separately
+- ⬜ `elementary-data/elementary` — dbt observability, install as dbt package
+- ⬜ `airbytehq/airbyte` — ingestion platform, deploy separately
+- ⬜ `promptfoo/promptfoo` — prompt eval, install separately
+- ⬜ `langfuse/langfuse` — LLM observability, deploy separately
