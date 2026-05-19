@@ -1,0 +1,59 @@
+{
+  "_comment": "Microsoft Azure DevOps MCP Server (Official) — task management, repos, pipelines",
+  "_source": "microsoft/azure-devops-mcp",
+  "_source_url": "https://github.com/microsoft/azure-devops-mcp",
+  "_license": "MIT",
+  "_stars": 1693,
+
+  "_setup": [
+    "Option A — Claude Code CLI (recommended):",
+    "  claude mcp add azure-devops -- npx -y @azure-devops/mcp YOUR_ORG_NAME",
+    "",
+    "Option B — claude_desktop_config.json (paste the block below under 'mcpServers'):",
+    "  Replace YOUR_ORG_NAME with your Azure DevOps organization name",
+    "  (e.g. 'contoso' from dev.azure.com/contoso)",
+    "",
+    "Authentication methods:",
+    "  interactive (default) — browser login, best for local dev",
+    "  azcli — uses existing 'az login' session",
+    "  pat — Personal Access Token via PERSONAL_ACCESS_TOKEN env var",
+    "",
+    "Requires: Node.js 20+"
+  ],
+
+  "_capabilities": [
+    "Boards: work items, iterations, areas, queries, board settings",
+    "Repos: pull requests, branches, commits, diffs, file content",
+    "Pipelines: queue/cancel/retry builds, logs, definitions",
+    "Artifacts: feeds, packages, permissions",
+    "Test Plans: test cases, suites, results",
+    "Wiki: create/read/update pages",
+    "Project: teams, iterations, processes"
+  ],
+
+  "mcpServers": {
+    "azure-devops": {
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "YOUR_ORG_NAME"],
+      "_comment_auth": "Default: interactive browser login. For PAT auth, add: '--authentication', 'pat'",
+      "_comment_pat": "If using PAT auth, set env var: PERSONAL_ACCESS_TOKEN=your_pat_here"
+    }
+  },
+
+  "_pat_auth_variant": {
+    "azure-devops": {
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "YOUR_ORG_NAME", "--authentication", "pat"],
+      "env": {
+        "PERSONAL_ACCESS_TOKEN": "YOUR_PAT_HERE"
+      }
+    }
+  },
+
+  "_azcli_auth_variant": {
+    "azure-devops": {
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "YOUR_ORG_NAME", "--authentication", "azcli"]
+    }
+  }
+}
