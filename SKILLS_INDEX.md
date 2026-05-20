@@ -60,6 +60,28 @@ Source: https://github.com/alirezarezvani/claude-skills · ⭐ 15,411
 
 ---
 
+---
+
+## From data-goblin/power-bi-agentic-development (MIT)
+
+Source: https://github.com/data-goblin/power-bi-agentic-development
+
+Install via Claude Code plugin marketplace (not copied to `~/.claude/skills/`):
+```bash
+claude plugin marketplace add data-goblin/power-bi-agentic-development
+```
+
+| Plugin | Use for |
+|--------|---------|
+| `plugins/power-bi-agentic-development/plugins/pbip` | PBIR metadata editing: visual.json, report.json, themes, filters (requires PBIP format) |
+| `plugins/power-bi-agentic-development/plugins/reports` | Deneb/Vega-Lite visuals, SVG via DAX, theme JSON, pbir-cli |
+| `plugins/power-bi-agentic-development/plugins/pbi-desktop` | Live model exploration and real-time DAX query capture |
+| `plugins/power-bi-agentic-development/plugins/semantic-models` | DAX, Power Query, naming conventions, lineage, refresh |
+| `plugins/power-bi-agentic-development/plugins/tabular-editor` | BPA rules, C# macros, Tabular Editor 2 CLI |
+| `plugins/power-bi-agentic-development/plugins/fabric-cli` | Remote Fabric ops, tenant audits, governance |
+
+---
+
 ## Prompt Templates (prompts/)
 
 Not skills — copy-paste prompts for one-off tasks.

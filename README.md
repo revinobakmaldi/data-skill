@@ -14,7 +14,8 @@ Designed for use with **Claude Code**, **AWS Kiro**, **Codex**, and other AI cod
 | `skills/` | Claude Code skill files — invoke with `/skill-name` |
 | `prompts/` | Copy-paste prompt templates for daily analytics tasks |
 | `scripts/` | Working Python scripts for data ops |
-| `mcp/configs/` | Ready-to-use MCP server JSON configs |
+| `mcp/configs/` | Ready-to-use MCP server JSON configs (live tool-call integrations) |
+| `plugins/` | Claude Code plugin marketplaces (skills, agents, hooks installed via `claude plugin marketplace add`) |
 
 ---
 
@@ -95,7 +96,7 @@ JSON snippets ready to paste into `claude_desktop_config.json`.
 | `bigquery-toolbox.json` | BigQuery schema discovery + SQL execution via Google MCP Toolbox |
 | `toolbox-config.yaml` | Tool definitions: list tables, describe columns, profile data, run SQL |
 | `dbt-mcp.json` | dbt model exploration, semantic queries, dbt commands |
-| `powerbi-mcp.json` | DAX generation, semantic model edits, Power BI report support |
+| `powerbi-mcp.json` | Semantic model only: DAX generation, measures, tables, columns, relationships |
 
 ### Quickstart (Claude Desktop)
 

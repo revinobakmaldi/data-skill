@@ -110,7 +110,18 @@ See `mcp/configs/` for ready-to-use MCP config snippets.
 |-----|---------|
 | Google MCP Toolbox | BigQuery schema discovery, SQL execution, multi-source access |
 | dbt MCP | dbt model generation, test creation, semantic queries |
-| Power BI Modeling MCP | DAX generation, semantic model edits, report support |
+| Power BI Modeling MCP | Semantic model only: DAX, measures, tables, columns, relationships |
+
+## Claude Code Plugins
+
+See `plugins/` for installed Claude Code plugin marketplaces.
+
+| Plugin | Use for |
+|--------|---------|
+| data-goblin/power-bi-agentic-development | Report/visual editing (PBIP), Deneb visuals, Tabular Editor, Fabric CLI, semantic model auditing |
+
+> Power BI semantic model → use Power BI Modeling MCP (live tool calls)
+> Power BI report/visual editing → use data-goblin plugins (requires PBIP format)
 
 ---
 

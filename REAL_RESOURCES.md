@@ -167,12 +167,14 @@ Resources now configured in this repo (see `mcp/configs/` and `skills/`):
 
 - ✅ `googleapis/mcp-toolbox` — config at `mcp/configs/bigquery-toolbox.json`
 - ✅ `dbt-labs/dbt-mcp` — config at `mcp/configs/dbt-mcp.json`; skills from `dbt-labs/dbt-agent-skills`
-- ✅ `microsoft/powerbi-modeling-mcp` — config at `mcp/configs/powerbi-mcp.json`
+- ✅ `microsoft/powerbi-modeling-mcp` — config at `mcp/configs/powerbi-mcp.json` (semantic model MCP only — NOT report/visual editing)
+- ✅ `data-goblin/power-bi-agentic-development` — cloned at `plugins/power-bi-agentic-development/` (report/visual editing via PBIP + full PBI plugin suite)
 - ✅ `microsoft/azure-devops-mcp` — config at `mcp/configs/azure-devops-mcp.json`
 - ✅ `microsoft/playwright` — wrapped in `scripts/html_to_pdf.py`
 
 Still external references (not yet configured locally):
 
+- ⬜ `RuiRomano/powerbi-agentic-mcp-cloud-agent` — superseded by data-goblin plugin suite, skip
 - ⬜ `apache/airflow` — orchestration platform, install separately
 - ⬜ `dbt-labs/dbt-core` — transformation framework, install separately
 - ⬜ `great-expectations/great_expectations` — quality framework, install separately
