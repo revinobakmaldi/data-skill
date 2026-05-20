@@ -1,0 +1,47 @@
+{
+  "name": "power-bi-agentic-development",
+  "owner": {
+    "name": "Kurt Buhler"
+  },
+  "metadata": {
+    "description": "A marketplace for skills and tools for agentic Power BI development.",
+    "version": "26.20"
+  },
+  "plugins": [
+    {
+      "name": "tabular-editor",
+      "description": "Agentic development tools for Power BI semantic models with Tabular Editor.",
+      "source": "./plugins/tabular-editor"
+    },
+    {
+      "name": "pbi-desktop",
+      "description": "Connect to Power BI Desktop's local Analysis Services instance to enumerate models, query with DAX, refresh data, and modify metadata via TOM. No MCP server required.",
+      "source": "./plugins/pbi-desktop"
+    },
+    {
+      "name": "pbip",
+      "description": "Get this plugin if you'll work with pbip files, tmdl, or pbir. It helps with file structure and direct modifications.",
+      "source": "./plugins/pbip"
+    },
+    {
+      "name": "semantic-models",
+      "description": "Get this plugin for agentic development and management of semantic models.",
+      "source": "./plugins/semantic-models"
+    },
+    {
+      "name": "reports",
+      "description": "Get this plugin for agentic development and management of reports.",
+      "source": "./plugins/reports"
+    },
+    {
+      "name": "fabric-cli",
+      "description": "Get this plugin to work with Fabric / Power BI service, by means of the fabric cli.",
+      "source": "./plugins/fabric-cli"
+    },
+    {
+      "name": "fabric-admin",
+      "description": "Fabric and Power BI administration; tenant settings audits, governance, delegated overrides, and Entra security group investigation. Requires the fabric-cli plugin.",
+      "source": "./plugins/fabric-admin"
+    }
+  ]
+}
