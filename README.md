@@ -1,37 +1,37 @@
 # data-skill
 
-AI skills, tools, and MCP configs that supercharge the analytics team.
-Designed for use with **Claude Code**, **AWS Kiro**, **Codex**, and other AI coding assistants.
+AI skills, tools, MCP configs, and plugins for the analytics team.
+Works with **Claude Code**, **AWS Kiro**, **Codex**, and other AI coding assistants.
 
 ---
 
-## What's in here
+## Repo Structure
 
-| Directory | What it is |
-|-----------|-----------|
-| `CLAUDE.md` | Main instructions for Claude Code and AI assistants |
-| `AGENTS.md` | Instructions for Codex, Copilot Workspace, and agent-based tools |
-| `skills/` | Claude Code skill files — invoke with `/skill-name` |
-| `prompts/` | Copy-paste prompt templates for daily analytics tasks |
+| Path | What it is |
+|------|-----------|
+| `CLAUDE.md` | AI assistant instructions — conventions, tools, what to use for what |
+| `skills/` | Claude Code skill files (copy to `~/.claude/skills/`) |
+| `prompts/` | Copy-paste prompt templates for daily tasks |
 | `scripts/` | Working Python scripts for data ops |
-| `mcp/configs/` | Ready-to-use MCP server JSON configs (live tool-call integrations) |
-| `plugins/` | Claude Code plugin marketplaces (skills, agents, hooks installed via `claude plugin marketplace add`) |
+| `mcp/configs/` | MCP server JSON configs — live tool-call integrations |
+| `plugins/` | Claude Code plugin marketplaces — skills/agents/hooks installed via CLI |
 
 ---
 
-## Skills (Claude Code)
+## Skills
 
-Drop the files in `skills/` into your Claude Code skills directory (`~/.claude/skills/`).
+### Custom (built for this team)
 
-### Custom skills (built for this team)
+Copy files from `skills/` to `~/.claude/skills/` to activate.
 
-| Skill | What it does |
-|-------|-------------|
-| `dbt-model` | Generate dbt SQL + schema.yml + tests from a source table |
-| `sql-analyst` | Answer business questions with production BigQuery SQL |
-| `insight-writer` | Turn KPI data into executive narratives |
-| `dag-builder` | Generate Airflow DAGs from a pipeline description |
-| `data-analyst` | Analyze pasted data tables and answer business questions |
+| Skill | Trigger | What it does |
+|-------|---------|-------------|
+| `skills/dbt-model.md` | "create a dbt model for..." | Generate staging/intermediate/mart SQL + schema.yml + tests |
+| `skills/sql-analyst.md` | "write SQL for..." | Business question → production BigQuery SQL |
+| `skills/insight-writer.md` | "write a narrative for..." | KPI table → executive summary |
+| `skills/dag-builder.md` | "create an Airflow DAG for..." | Pipeline description → Airflow DAG |
+| `skills/data-analyst.md` | "analyze this data: ..." | Paste data → trend/anomaly analysis |
+| `skills/azure-devops.md` | "create a work item for..." | Azure DevOps — boards, repos, PRs, wiki |
 
 ### From dbt-labs/dbt-agent-skills (Apache-2.0)
 
@@ -39,12 +39,12 @@ Source: https://github.com/dbt-labs/dbt-agent-skills
 
 | Skill | What it does |
 |-------|-------------|
-| `dbt-labs/using-dbt-for-analytics-engineering` | Core dbt workflow — model building, testing, documentation |
-| `dbt-labs/adding-dbt-unit-test` | Add unit tests to dbt models (dict/csv/sql formats) |
-| `dbt-labs/troubleshooting-dbt-job-errors` | Diagnose and fix dbt job failures |
-| `dbt-labs/running-dbt-commands` | CLI execution, selectors, variables, deferral |
-| `dbt-labs/answering-natural-language-questions-with-dbt` | Query semantic layer with natural language |
-| `dbt-labs/building-dbt-semantic-layer` | Build semantic models, entities, and metrics |
+| `skills/dbt-labs/using-dbt-for-analytics-engineering.md` | Core dbt workflow — building, testing, documentation |
+| `skills/dbt-labs/adding-dbt-unit-test.md` | Add unit tests (dict/csv/sql formats) |
+| `skills/dbt-labs/troubleshooting-dbt-job-errors.md` | Diagnose and fix dbt job failures |
+| `skills/dbt-labs/running-dbt-commands.md` | CLI: selectors, variables, deferral |
+| `skills/dbt-labs/answering-natural-language-questions-with-dbt.md` | Query semantic layer in plain English |
+| `skills/dbt-labs/building-dbt-semantic-layer.md` | Build semantic models, entities, metrics |
 
 ### From AltimateAI/data-engineering-skills (MIT)
 
@@ -52,11 +52,11 @@ Source: https://github.com/AltimateAI/data-engineering-skills
 
 | Skill | What it does |
 |-------|-------------|
-| `altimate-ai/creating-dbt-models` | Full dbt model creation workflow with conventions |
-| `altimate-ai/debugging-dbt-errors` | Debug errors with 3-failure rule methodology |
-| `altimate-ai/testing-dbt-models` | Add generic and custom tests to models |
-| `altimate-ai/migrating-sql-to-dbt` | Convert existing SQL to dbt layer-by-layer |
-| `altimate-ai/developing-incremental-models` | Incremental strategies, unique keys, late-arriving data |
+| `skills/altimate-ai/creating-dbt-models.md` | Full dbt model creation workflow |
+| `skills/altimate-ai/debugging-dbt-errors.md` | Debug errors with 3-failure methodology |
+| `skills/altimate-ai/testing-dbt-models.md` | Add generic and custom tests |
+| `skills/altimate-ai/migrating-sql-to-dbt.md` | Convert legacy SQL to dbt layer-by-layer |
+| `skills/altimate-ai/developing-incremental-models.md` | Incremental strategies and late-arriving data |
 
 ### From alirezarezvani/claude-skills (MIT)
 
@@ -64,46 +64,83 @@ Source: https://github.com/alirezarezvani/claude-skills
 
 | Skill | What it does |
 |-------|-------------|
-| `community/senior-data-engineer` | Senior DE persona — architecture, pipelines, best practices |
-| `community/senior-data-scientist` | Senior DS persona — modeling, experimentation, ML workflows |
-| `community/senior-ml-engineer` | Senior MLE persona — model deployment, MLOps |
-| `community/sql-database-assistant` | SQL expert — query writing, optimization, schema design |
-| `community/data-quality-auditor` | Data quality audit — profiling, validation, issue detection |
+| `skills/community/senior-data-engineer.md` | Senior DE persona — architecture, pipelines, best practices |
+| `skills/community/senior-data-scientist.md` | Senior DS persona — modeling, experimentation, ML |
+| `skills/community/senior-ml-engineer.md` | Senior MLE persona — model deployment, MLOps |
+| `skills/community/sql-database-assistant.md` | SQL expert — query writing, optimization, schema design |
+| `skills/community/data-quality-auditor.md` | Data quality audit — profiling, validation, issue detection |
+
+---
+
+## Claude Code Plugins
+
+Installed via `claude plugin marketplace add` — provides skills, agents, and hooks. Not MCP servers.
+
+### data-goblin/power-bi-agentic-development (MIT)
+
+Source: https://github.com/data-goblin/power-bi-agentic-development  
+Location: `plugins/power-bi-agentic-development/`
+
+```bash
+claude plugin marketplace add data-goblin/power-bi-agentic-development
+```
+
+| Plugin | What it does |
+|--------|-------------|
+| `pbip` | PBIR metadata editing: visual.json, report.json, themes, filters — requires PBIP format |
+| `reports` | Deneb/Vega-Lite visuals, SVG via DAX, theme JSON, pbir-cli manipulation |
+| `pbi-desktop` | Live model exploration and real-time DAX query capture from running PBI Desktop |
+| `semantic-models` | DAX, Power Query, naming conventions, lineage, refresh troubleshooting |
+| `tabular-editor` | BPA rules, C# macros, Tabular Editor 2 CLI automation |
+| `fabric-cli` | Remote Fabric operations, tenant audits, governance |
+
+> **Note:** `pbip` and `reports` plugins require saving the `.pbix` file as a Power BI Project (PBIP) first: File → Save as → Power BI Project.
+
+---
+
+## MCP Servers
+
+MCP servers give Claude direct tool-call access. Register once with `claude mcp add`.
+
+| Config | MCP | Use for |
+|--------|-----|---------|
+| `mcp/configs/bigquery-toolbox.json` + `toolbox-config.yaml` | Google MCP Toolbox | BigQuery schema discovery, SQL execution, data profiling |
+| `mcp/configs/dbt-mcp.json` | dbt MCP (dbt-labs) | dbt model exploration, semantic layer queries, dbt commands |
+| `mcp/configs/powerbi-mcp.json` | Power BI Modeling MCP (Microsoft) | Semantic model only: DAX, measures, tables, columns, relationships |
+| `mcp/configs/azure-devops-mcp.json` | Azure DevOps MCP (Microsoft) | Work items, repos, PRs, pipelines, wiki |
+
+**Google MCP Toolbox tools:** `list-datasets`, `list-tables`, `describe-table`, `run-sql`, `sample-table`, `profile-column`
+
+### Quickstart
+
+```bash
+# Power BI Modeling (semantic model — NOT report/visual editing)
+claude mcp add powerbi-modeling-mcp -- npx -y @microsoft/powerbi-modeling-mcp@latest --start
+
+# BigQuery (after configuring toolbox-config.yaml)
+claude mcp add bigquery -- python -m toolbox.server
+
+# dbt
+claude mcp add dbt -- python -m dbt_mcp.server
+
+# Azure DevOps
+claude mcp add azure-devops -- npx -y @azure-devops/mcp YOUR_ORG_NAME
+```
 
 ---
 
 ## Prompt Templates
 
-Copy-paste prompts for tasks you do regularly.
+Copy-paste prompts for one-off tasks (not skills).
 
 | Prompt | Use it for |
 |--------|-----------|
-| `sql-from-question.md` | Business question → SQL |
-| `dbt-model-generator.md` | Source schema → full dbt model package |
-| `insight-to-narrative.md` | KPI table → executive summary |
-| `data-quality-checks.md` | Table profile → dbt-expectations / GE tests |
-| `dashboard-wireframe.md` | Dashboard brief → HTML prototype |
-| `dag-scaffold.md` | Pipeline description → Airflow DAG |
-
----
-
-## MCP Server Configs
-
-JSON snippets ready to paste into `claude_desktop_config.json`.
-
-| Config | What it gives you |
-|--------|------------------|
-| `bigquery-toolbox.json` | BigQuery schema discovery + SQL execution via Google MCP Toolbox |
-| `toolbox-config.yaml` | Tool definitions: list tables, describe columns, profile data, run SQL |
-| `dbt-mcp.json` | dbt model exploration, semantic queries, dbt commands |
-| `powerbi-mcp.json` | Semantic model only: DAX generation, measures, tables, columns, relationships |
-
-### Quickstart (Claude Desktop)
-
-1. Open `~/Library/Application Support/Claude/claude_desktop_config.json`
-2. Merge the `mcpServers` block from the config file you want
-3. Update the env vars (project ID, workspace ID, etc.)
-4. Restart Claude Desktop
+| `prompts/sql-from-question.md` | Business question → SQL |
+| `prompts/dbt-model-generator.md` | Source schema → full dbt model package |
+| `prompts/insight-to-narrative.md` | KPI table → executive summary |
+| `prompts/data-quality-checks.md` | Table profile → dbt-expectations checks |
+| `prompts/dashboard-wireframe.md` | Dashboard brief → HTML prototype |
+| `prompts/dag-scaffold.md` | Pipeline description → Airflow DAG |
 
 ---
 
@@ -114,16 +151,12 @@ JSON snippets ready to paste into `claude_desktop_config.json`.
 | `scripts/data_to_claude.py` | `python scripts/data_to_claude.py --file data.csv --question "What are the trends?"` |
 | `scripts/html_to_pdf.py` | `python scripts/html_to_pdf.py report.html -o report.pdf` |
 
-### data_to_claude.py requirements
 ```bash
+# data_to_claude.py deps
 pip install anthropic pandas tabulate
-export ANTHROPIC_API_KEY=sk-ant-...
-```
 
-### html_to_pdf.py requirements
-```bash
-pip install playwright
-playwright install chromium
+# html_to_pdf.py deps
+pip install playwright && playwright install chromium
 ```
 
 ---
@@ -138,11 +171,40 @@ playwright install chromium
 | Data quality | dbt-expectations + Great Expectations |
 | BI | Power BI + HTML reports |
 | LLM / AI coding | Claude Code (CLI) |
+| Scripting | Python 3.11+ |
+
+---
+
+## External Resources
+
+Key open-source tools mapped to each workflow stage.
+
+**Ingestion:** [Airbyte](https://github.com/airbytehq/airbyte), [dlt](https://github.com/dlt-hub/dlt), [Airflow](https://github.com/apache/airflow)  
+**Transformation:** [dbt-core](https://github.com/dbt-labs/dbt-core), [dbt-utils](https://github.com/dbt-labs/dbt-utils), [dbt-project-evaluator](https://github.com/dbt-labs/dbt-project-evaluator)  
+**Data quality:** [Great Expectations](https://github.com/great-expectations/great_expectations), [dbt-expectations](https://github.com/calogica/dbt-expectations), [Elementary](https://github.com/elementary-data/elementary)  
+**BI / reporting:** [Quarto](https://github.com/quarto-dev/quarto-cli), [Evidence](https://github.com/evidence-dev/evidence), [Playwright](https://github.com/microsoft/playwright)  
+**ML / experimentation:** [MLflow](https://github.com/mlflow/mlflow), [scikit-learn](https://github.com/scikit-learn/scikit-learn), [Featuretools](https://github.com/alteryx/featuretools)  
+**LLM observability:** [Langfuse](https://github.com/langfuse/langfuse), [Evidently](https://github.com/evidentlyai/evidently), [promptfoo](https://github.com/promptfoo/promptfoo)
+
+### Configured in this repo
+
+| Status | Resource | Location |
+|--------|----------|----------|
+| ✅ | googleapis/mcp-toolbox | `mcp/configs/bigquery-toolbox.json` |
+| ✅ | dbt-labs/dbt-mcp | `mcp/configs/dbt-mcp.json` |
+| ✅ | microsoft/powerbi-modeling-mcp | `mcp/configs/powerbi-mcp.json` (semantic model only) |
+| ✅ | data-goblin/power-bi-agentic-development | `plugins/power-bi-agentic-development/` |
+| ✅ | microsoft/azure-devops-mcp | `mcp/configs/azure-devops-mcp.json` |
+| ✅ | microsoft/playwright | `scripts/html_to_pdf.py` |
+| ⬜ | apache/airflow | install separately |
+| ⬜ | dbt-labs/dbt-core | install separately |
+| ⬜ | elementary-data/elementary | install as dbt package |
+| ⬜ | airbytehq/airbyte | deploy separately |
 
 ---
 
 ## Contributing
 
-- Add a skill: create `skills/your-skill-name.md` following the format of existing skills
+- Add a skill: create `skills/your-skill-name.md` following existing format
 - Add a prompt: create `prompts/your-prompt-name.md` with template + example
-- Add a script: add to `scripts/`, include usage in docstring, update this README
+- Add a script: add to `scripts/`, include usage in docstring
