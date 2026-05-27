@@ -155,6 +155,7 @@ For existing report operations:
 ## Local project agents
 
 Project subagents live in `.claude/agents/`.
+Project-local skills live in `.claude/skills/`.
 
 Available local BI agents:
 - `bi-intake-manager`
@@ -173,6 +174,7 @@ Use them for:
 - durable documentation after changes
 
 These local agents should prefer the plugin workflows above before fallback methods.
+They are intentionally kept relatively small and preload project-local skills, templates, and checklists from `.claude/skills/`.
 
 ---
 

@@ -2,8 +2,7 @@
 
 These are project-level Claude Code subagents for BI build and BI operations work.
 
-They are designed to align first with the `data-goblin/power-bi-agentic-development` marketplace plugins.
-Reference: `../plugins/power-bi-agentic-development.md`
+They are designed to align first with the `data-goblin/power-bi-agentic-development` marketplace plugins and preload project BI skills from `../skills/`.
 
 ## Agent set
 
@@ -29,6 +28,7 @@ Reference: `../plugins/power-bi-agentic-development.md`
 - `semantic-model-architect` protects long-term model quality.
 - `bi-ops-agent` protects your time from support churn.
 - `qa-reconciliation-agent` protects trust in numbers.
+- The real expertise lives in project skills, templates, and checklists rather than bloated agent prompts.
 
 ## Plugin expectation
 
@@ -40,3 +40,12 @@ Reference: `../plugins/power-bi-agentic-development.md`
   - `reports`
 - Use those plugin workflows first for semantic-model inspection, DAX validation, PBIP validation, report manipulation, and trace-based diagnosis.
 - Treat standalone MCP use as secondary in this repo.
+
+## Supporting skills
+
+- `bi-intake-brief`
+- `semantic-model-rubric`
+- `powerbi-build-playbook`
+- `bi-ops-triage`
+- `bi-reconciliation-gate`
+- `bi-documentation-kit`
