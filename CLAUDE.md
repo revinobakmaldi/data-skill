@@ -81,7 +81,7 @@ Register with `claude mcp add`. These give Claude direct programmatic access.
 |-----|--------|---------|
 | Google MCP Toolbox | `mcp/configs/bigquery-toolbox.json` | BigQuery: list datasets/tables, describe columns, run SQL, profile data |
 | dbt MCP | `mcp/configs/dbt-mcp.json` | dbt model exploration, semantic layer queries, dbt CLI commands |
-| Power BI Modeling MCP | `mcp/configs/powerbi-mcp.json` | **Semantic model only**: DAX, measures, tables, columns, relationships |
+| Power BI Modeling MCP | `mcp/configs/powerbi-mcp.json` | Semantic model only: DAX, measures, tables, columns, relationships |
 | Azure DevOps MCP | `mcp/configs/azure-devops-mcp.json` | Work items, repos, PRs, pipelines, wiki |
 
 ```bash
@@ -97,28 +97,82 @@ claude mcp add azure-devops -- npx -y @azure-devops/mcp YOUR_ORG_NAME
 
 Installed via plugin marketplace — not MCP servers. Provide skill docs and agents Claude reads and acts on.
 
-| Plugin suite | Location | Use for |
-|--------------|----------|---------|
-| data-goblin/power-bi-agentic-development | `plugins/power-bi-agentic-development/` | Power BI report/visual editing, Deneb, Tabular Editor, Fabric CLI |
+| Plugin suite | Use for |
+|--------------|---------|
+| `data-goblin/power-bi-agentic-development` | Power BI report/visual editing, semantic-model workflows, PBIP validation, Tabular Editor, Fabric CLI |
 
 ```bash
 claude plugin marketplace add data-goblin/power-bi-agentic-development
+claude plugin install pbip@power-bi-agentic-development
+claude plugin install pbi-desktop@power-bi-agentic-development
+claude plugin install reports@power-bi-agentic-development
+claude plugin install semantic-models@power-bi-agentic-development
 ```
 
-Plugins within the suite:
+Preferred plugin roles in this repo:
+- `pbip` for PBIP, TMDL, and PBIR file work plus validation hooks
+- `pbi-desktop` for live Desktop model access and local DAX/query work
+- `reports` for report-page, visual, theme, and `pbir` CLI workflows
+- `semantic-models` for model audits, DAX quality, naming, refresh, and lineage work
 
-| Plugin | Use for |
-|--------|---------|
-| `pbip` | PBIR metadata: visual.json, report.json, themes, filters — **requires PBIP format** |
-| `reports` | Deneb/Vega-Lite visuals, SVG via DAX, theme JSON, pbir-cli |
-| `pbi-desktop` | Live model exploration and DAX query capture from running PBI Desktop |
-| `semantic-models` | DAX, Power Query, naming conventions, lineage, refresh |
-| `tabular-editor` | BPA rules, C# macros, Tabular Editor 2 CLI |
-| `fabric-cli` | Remote Fabric operations, tenant audits, governance |
+Priority order for BI work in this repo:
+1. `pbip`
+2. `pbi-desktop`
+3. `semantic-models`
+4. `reports`
 
-**Power BI decision guide:**
-- Semantic model work (DAX, measures, tables) → use **Power BI Modeling MCP**
-- Report/visual editing (pages, visuals, themes) → use **data-goblin pbip + reports plugins** (save as PBIP first: File → Save as → Power BI Project)
+Power BI decision guide:
+- Semantic model work in live models or via semantic-model APIs → use Power BI Modeling MCP or `pbi-desktop`, depending on environment
+- PBIP/TMDL/PBIR file work → use `pbip`
+- Report/visual editing, page/layout/theme work → use `reports`
+- Structured model audit/review → use `semantic-models`
+
+---
+
+## BI operating model
+
+- Separate `new report delivery` from `existing report operations`
+- Treat semantic-model design as a first-class step, not a side effect of report building
+- Keep metric definitions explicit before proposing visuals or DAX
+- Always call out assumptions, source-of-truth gaps, and unresolved business definitions
+
+For new report work:
+- First define audience, decision, KPI list, grain, source systems, and refresh cadence
+- Then propose the semantic model: facts, dimensions, relationships, naming, measure strategy, and performance risks
+- Prefer `pbip`, `pbi-desktop`, or `semantic-models` workflows instead of guessing
+- Only after definitions are stable should the build move into visuals, interactions, and release packaging
+- Before handoff, run an independent QA and reconciliation pass
+
+For existing report operations:
+- Classify the issue first: refresh failure, source drift, broken logic, access/RLS, performance, or UX/reporting defect
+- Prefer `pbi-desktop`, `pbip`, or `semantic-models` validation and audit workflows before proposing a fix
+- Prefer root-cause analysis over patching symptoms
+- Separate investigation notes from stakeholder-facing updates
+- For number changes, require reconciliation against source truth
+
+---
+
+## Local project agents
+
+Project subagents live in `.claude/agents/`.
+
+Available local BI agents:
+- `bi-intake-manager`
+- `semantic-model-architect`
+- `powerbi-build-agent`
+- `bi-ops-agent`
+- `qa-reconciliation-agent`
+- `bi-documentation-agent`
+
+Use them for:
+- intake and scoping
+- semantic-model design
+- Power BI build planning
+- BI incident triage
+- KPI validation and reconciliation
+- durable documentation after changes
+
+These local agents should prefer the plugin workflows above before fallback methods.
 
 ---
 
